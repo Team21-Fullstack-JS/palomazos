@@ -1,10 +1,39 @@
 .header {
     grid-area: header;
     padding: 0 1rem;
-    /*border: 1px solid red;*/
+    background-color: var(--bgcolor-header);
+    display: grid;
+    grid-template:
+    "logo name navUser" var(--height-header) / 50px 1fr 70px;
 }
 
-.title {
-    font-size: 1.3rem;
-    line-height: 80px;
+.header__container_logo {
+    grid-area: logo;
+    /*border: 1px solid greenyellow;*/
+}
+
+.header__container_name {
+    grid-area: name;
+    /*border: 1px solid cornflowerblue;*/
+}
+
+.header__container_navMenu {
+    grid-area: navMenu;
+    /*border: 1px solid red;*/
+    display: flex;
+
+}
+
+.header__container_navUser {
+    grid-area: navUser;
+    display: flex;
+    /*border: 1px solid deeppink;*/
+}
+
+/* Tabletas*/
+@media screen and (min-width: 600px) {
+    .header {
+        grid-template:
+        "logo name navMenu navUser" var(--height-header) / 50px .7fr 1fr 70px;
+    }
 }

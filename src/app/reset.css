@@ -43,9 +43,13 @@ body {
     /*Creamos un template-area para el maquetado general del sitio
     Diseño Mobile-First*/
     grid-template:
-    "header" 80px
+    "header" var(--height-header)
     "main" 1fr
     "footer" auto / 1fr;
+}
+:root {
+    --bgcolor-header: #2d3748;
+    --height-header: 80px;
 }
 ol, ul {
     list-style: none;
@@ -61,6 +65,9 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
 }
 
 /* Tabletas*/
