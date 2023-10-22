@@ -45,7 +45,7 @@ body {
     grid-template:
     "header" var(--height-header)
     "main" 1fr
-    "footer" auto / 1fr;
+    "footer" 50px / 1fr;
 }
 :root {
     --bgcolor-header: #2d3748;

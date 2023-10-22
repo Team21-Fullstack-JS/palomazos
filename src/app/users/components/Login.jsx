@@ -2,10 +2,8 @@ import {
     Avatar,
     Box,
     Button,
-    // Checkbox,
     Container,
     CssBaseline,
-    // FormControlLabel,
     Grid,
     Link,
     TextField,
@@ -15,7 +13,7 @@ import {
 import { LockOutlined } from '@mui/icons-material';
 import { useFormik } from 'formik';
 
-import { userLoginSchema } from './UserSchemas.jsx';
+import { userLoginSchema } from '../validation/UserSchemas.jsx';
 
 export const Login = () => {
     const formik = useFormik({
@@ -30,18 +28,20 @@ export const Login = () => {
     });
 
     return (
-        // <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 4,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{
+                        mt: 2,
+                        bgcolor: 'secondary.main'
+                    }}>
                         <LockOutlined />
                     </Avatar>
                     <Typography component="h1" variant="h5">
@@ -78,24 +78,15 @@ export const Login = () => {
                             error={formik.touched.password && Boolean(formik.errors.password)}
                             helperText={formik.touched.password && formik.errors.password}
                         />
-                        {/*<FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />*/}
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 4, mb: 3 }}
+                            sx={{ mt: 3, mb: 2 }}
                         >
                             Login
                         </Button>
                         <Grid container>
-                            {/*<Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Cambiar su password?
-                                </Link>
-                            </Grid>*/}
                             <Grid item>
                                 <Link href="#" variant="body2">
                                     {"No tienes una cuenta?  Registrate"}
@@ -104,8 +95,6 @@ export const Login = () => {
                         </Grid>
                     </Box>
                 </Box>
-                {/*<Copyright sx={{ mt: 8, mb: 4 }} />*/}
             </Container>
-        // </ThemeProvider>
     );
 }
