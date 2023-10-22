@@ -1,7 +1,9 @@
-.header {
+.header__container {
     grid-area: header;
-    padding: 0 1rem;
     background-color: var(--bgcolor-header);
+}
+
+.header {
     display: grid;
     grid-template:
     "logo name navUser" var(--height-header) / 50px 1fr 70px;
@@ -34,6 +36,14 @@
 @media screen and (min-width: 600px) {
     .header {
         grid-template:
-        "logo name navMenu navUser" var(--height-header) / 50px .7fr 1fr 70px;
+        "logo name navMenu navUser" var(--height-header) / 50px .4fr 1fr 70px;
+    }
+}
+
+/* Laptops/PC's*/
+@media screen and (min-width: 1024px) {
+    .header {
+        grid-template:
+        "logo name navMenu navUser" var(--height-header) / 50px .3fr 1fr 70px;
     }
 }
