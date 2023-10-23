@@ -8,13 +8,14 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    SwipeableDrawer,
-    Toolbar
+    SwipeableDrawer
 } from "@mui/material";
 
-import { MoveToInbox, Mail as MailIcon, Menu as MenuIcon } from '@mui/icons-material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 
 import { arrayMenu } from '../nav_menu/arrayMenu.jsx';
+import { linkOption } from "../../../utils/router/paths.js";
+import { Link } from "react-router-dom";
 
 export const NavMenuSidebar = () => {
 
@@ -27,19 +28,20 @@ export const NavMenuSidebar = () => {
     const drawer = (
         <Box
             sx={{ width: 250 }}
-            // role="presentation"
             onClick={handleDrawerToggle}
             onKeyDown={handleDrawerToggle}
         >
             <List>
                 {arrayMenu.map((option, index) => (
                     <ListItem key={option.name} >
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {option.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={option.name} />
-                        </ListItemButton>
+                        <Link to={ `${linkOption[`${option.name}`]()}` } >
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    {option.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={option.name} />
+                            </ListItemButton>
+                        </Link>
                     </ListItem>
                 ))}
             </List>
@@ -51,7 +53,7 @@ export const NavMenuSidebar = () => {
         <Box>
             <IconButton
                 onClick={handleDrawerToggle}
-                edge="false"
+                edge={false}
             >
                 <MenuIcon
                     sx={{ color: 'white' }}

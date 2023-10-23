@@ -1,9 +1,11 @@
-//MENÚ PRINCIPAL: LOS 4
-export const INICIO = "/";
-export const PELICULAS = "/películas";
-export const CONTACTO = '/contacto';
+const BASE = '/palomazos/';
 
-//USUARIOS NO REGISTRADOS
+//MENÚ PRINCIPAL: LOS 4
+export const LANDING = BASE;
+export const MOVIES  = BASE + "movies";
+export const CONTACT = BASE + 'contact';
+
+/*//USUARIOS NO REGISTRADOS
 export const USUARIOS = '/usuarios/';
 export const SIGNUP = 'signup';
 export const LOGIN = 'login';
@@ -12,5 +14,11 @@ export const LOGIN = 'login';
 export const USUARIO_ = 'usuario';
 export const USUARIO = '/usuario/:id';
 export const DASHBOARD = 'dashboard';
-export const MIS_PELICULAS = 'mis-películas';
-export const LOGOUT = 'logout';
+export const MIS_PELICULAS = 'mis-Películas';
+export const LOGOUT = 'logout';*/
+
+export const linkOption = {
+    'Inicio': () => LANDING,
+    'Peliculas': () => MOVIES,
+    'Contacto': () => CONTACT,
+}

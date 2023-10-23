@@ -14,7 +14,7 @@ export const Icon = ( { handleClick }) => {
             <IconButton
                 onClick={handleClick}
                 size="small"
-                edge='false'
+                edge={false}
             >
                 <Avatar sx={{ width: 30, height: 30 }}>U</Avatar>
             </IconButton>
