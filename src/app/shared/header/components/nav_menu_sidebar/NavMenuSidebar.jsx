@@ -51,7 +51,7 @@ export const NavMenuSidebar = () => {
         <Box>
             <IconButton
                 onClick={handleDrawerToggle}
-                edge="false"
+                edge={false}
             >
                 <MenuIcon
                     sx={{ color: 'white' }}
