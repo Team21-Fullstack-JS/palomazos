@@ -1,9 +1,10 @@
 import styles from './Main.module.css';
-import { Login } from "../../users/components/Login.jsx";
+import {Outlet} from "react-router";
 
 export const Main = () => {
-    return <main className={styles.main}>
-        {/*<p>Aqui va el Main</p>*/}
-        <Login />
-    </main>
+    return (
+        <main className={styles.main}>
+            <Outlet />
+        </main>
+    );
 }

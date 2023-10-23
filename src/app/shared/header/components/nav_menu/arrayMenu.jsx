@@ -6,7 +6,7 @@ export const arrayMenu = [
         icon: <Home fontSize="medium" />
     },
     {
-        name: 'Películas',
+        name: 'Peliculas',
         icon: <PlayCircle fontSize="medium" />
     },
     {
