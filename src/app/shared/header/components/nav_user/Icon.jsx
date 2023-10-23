@@ -8,13 +8,15 @@ export const Icon = ( { handleClick }) => {
             justifyContent: 'center',
             alignItems: 'center',
             textAlign: 'center',
+            width: '100%',
         }}>
         <Tooltip title="Menu de usuario">
             <IconButton
                 onClick={handleClick}
                 size="small"
+                edge='false'
             >
-                <Avatar sx={{ width: 45, height: 45 }}>U</Avatar>
+                <Avatar sx={{ width: 30, height: 30 }}>U</Avatar>
             </IconButton>
         </Tooltip>
     </Box>

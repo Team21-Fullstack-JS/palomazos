@@ -6,7 +6,15 @@
 .header {
     display: grid;
     grid-template:
-    "logo name navUser" var(--height-header) / 50px 1fr 70px;
+    "navMenuSidebar logo name navUser" var(--height-header) / 60px 50px 1fr 70px;
+}
+
+.header__container_navMenuSidebar {
+    grid-area: navMenuSidebar;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px solid pink;*/
 }
 
 .header__container_logo {

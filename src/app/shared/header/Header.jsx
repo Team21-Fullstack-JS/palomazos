@@ -6,12 +6,17 @@ import { NavMenu } from "./components/nav_menu/NavMenu.jsx";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../utils/theme/theme.jsx'
 import { Container, Box } from "@mui/material";
+import {NavMenuSidebar} from "./components/nav_menu_sidebar/NavMenuSidebar.jsx";
 
 export const Header = () => {
     return <ThemeProvider theme={theme}>
         <header className={styles.header__container}>
-            <Container component="main" maxWidth="lg">
+            <Container component="main" maxWidth="lg" >
                 <div className={styles.header}>
+                    <Box className={styles.header__container_navMenuSidebar} sx={{ display: { xxs: 'flex', sm: 'none' }}} >
+                        <NavMenuSidebar />
+                    </Box>
+
                     <div className={styles.header__container_logo}>
                         <Logo />
                     </div>
