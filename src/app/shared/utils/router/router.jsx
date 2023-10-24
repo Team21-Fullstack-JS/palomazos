@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
 import {CONTACT, LANDING, LOGIN, MOVIES, SIGNUP, USUARIOS} from "./paths.js";
 import {LandingPage} from "../../main/components/landingPage/LandingPage.jsx";
 import {Movies} from "../../main/components/movies/Movies.jsx";
@@ -9,43 +9,15 @@ import {Login} from "../../../users/components/login/Login.jsx";
 import {SignUp} from "../../../users/components/signup/SignUp.jsx";
 import {UserGuestRoutes} from "../../main/routes/UserGuestRoutes.jsx";
 
-export const router = createBrowserRouter([
-    {
-        path: LANDING,
-        element: <App />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                index: true,
-                element: <LandingPage />,
-            },
-            {
-                path: MOVIES,
-                element: <Movies />,
-            },
-            {
-                path: CONTACT,
-                element: <Contact />,
-            },
-            {
-                path: USUARIOS,
-                element: <UserGuestRoutes />,
-                children: [
-                    {
-                        index: true,
-                        element: <Login />,
-                    },
-                    {
-                        path: LOGIN,
-                        element: <Login />,
-                    },
-                    {
-                        path: SIGNUP,
-                        element: <SignUp />,
-                    }
-                ]
-            }
-        ]
-    }
-
-]);
+export const router = createBrowserRouter(createRoutesFromElements(
+    <Route path={LANDING} element={<App />} errorElement={<NotFound />}>
+      <Route index element={<LandingPage />}/>
+      <Route path={MOVIES} element={<Movies />}/>
+      <Route path={CONTACT} element={<Contact />}/>
+      <Route path={USUARIOS} element={<UserGuestRoutes />}>
+        <Route index element={<Login />} />
+        <Route path={LOGIN} element={<Login />} />
+        <Route path={SIGNUP} element={<SignUp />} />
+      </Route>
+    </Route>
+));
