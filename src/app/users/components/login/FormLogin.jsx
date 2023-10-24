@@ -1,9 +1,12 @@
-import {Box, Button, Grid, TextField, Typography} from "@mui/material";
+import {useCallback, useState} from "react";
 import { Link } from "react-router-dom";
-import { linkOption } from "../../../shared/utils/router/paths.js";
-import { css } from "@emotion/react";
 import { useFormik } from "formik";
-import {userLoginSchema} from "../../validation/UserSchemas.jsx";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { css } from "@emotion/react";
+import { linkOption } from "../../../shared/utils/router/paths.js";
+import { userLoginSchema } from "../../validation/UserSchemas.jsx";
+import { requestApi } from '../../../shared/requests/httpClient.js';
+import { useAuthContext } from '../../../shared/utils/hooks/useAuthContext.js';
 
 const styles = {
     link: css`
@@ -12,7 +15,36 @@ const styles = {
     `
 }
 
-export const FormLogin = () => {
+export const FormLogin = (props) => {
+
+    const [disabledButton, setDisabledButton] = useState(false);
+
+    const { setOpenTransitionMessage, setMessageTransitionMessage, setSeverityTransitionMessage } = props;
+
+    const { setAuthInLocalStorage, login } = useAuthContext();
+
+    const requestLogin = useCallback(async (body) => {
+        const response = await requestApi('/users/auth', 'POST', body);
+        const data = await response.json();
+
+        if (!data.error) {
+            setSeverityTransitionMessage('success');
+            setMessageTransitionMessage('Login exitoso. Redireccionando...');
+
+            setTimeout(() => {
+                setAuthInLocalStorage(data.data);
+                login();
+            }, 1600);
+
+        } else {
+            setSeverityTransitionMessage('error');
+            setMessageTransitionMessage(data.message);
+            setDisabledButton(false);
+        }
+
+        setOpenTransitionMessage(true);
+
+    }, [setAuthInLocalStorage, login, setOpenTransitionMessage, setMessageTransitionMessage, setSeverityTransitionMessage]);
 
     const formik = useFormik({
         initialValues: {
@@ -21,7 +53,8 @@ export const FormLogin = () => {
         },
         validationSchema: userLoginSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            setDisabledButton(true);
+            requestLogin(values);
         },
     });
 
@@ -59,6 +92,7 @@ export const FormLogin = () => {
             />
             <Button
                 type="submit"
+                disabled={disabledButton}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
