@@ -44,7 +44,7 @@ export function ModalDialog(props) {
                     :
                     <Box sx={{ width: '100%', display: display, justifyContent: 'center'}}>
                         <div style={{ height: '40px', width: '40px' }}>
-                            <img src='./assets/tail-spin.svg' style={{ height: '40px', width: '40px'}} />
+                            <img src='/assets/tail-spin.svg' style={{ height: '40px', width: '40px'}} />
                         </div>
                     </Box>
                 }
