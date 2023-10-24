@@ -18,7 +18,7 @@ export const Logo = () => {
     return <figure css={ styles.container }>
         <img
             css={ styles.logo }
-            src="./review2.svg"
+            src="/review.svg"
             alt="Logo"
         />
     </figure>

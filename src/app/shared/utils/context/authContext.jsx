@@ -11,7 +11,7 @@ export function AuthContextProvider( { children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
         () => window.localStorage.getItem("usuarioLogueadoPalomazos")
     );
-    /*const [usuario, setUsuario] = useState(window.localStorage.getItem("UsuarioPalomazos"));
+    const [usuario, setUsuario] = useState(window.localStorage.getItem("UsuarioPalomazos"));
 
     const login = useCallback(function () {
         setIsAuthenticated(true);
@@ -22,17 +22,17 @@ export function AuthContextProvider( { children }) {
         window.localStorage.removeItem("UsuarioPalomazos", true);
         setIsAuthenticated(false);
         setUsuario(null);
-    }, []);*/
+    }, []);
 
     const value = useMemo( ()=> (
         {
-            // login,
-            // logout,
+            login,
+            logout,
             isAuthenticated,
-            // usuario,
-            // setUsuario
+            usuario,
+            setUsuario
         }
-    ), [isAuthenticated]);//, login, logout, usuario, setUsuario]);
+    ), [isAuthenticated, login, logout, usuario, setUsuario]);
 
     return (
         <AuthContext.Provider value={ value }>

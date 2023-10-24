@@ -34,7 +34,7 @@ export const NavMenuSidebar = () => {
             <List>
                 {arrayMenu.map((option, index) => (
                     <ListItem key={option.name} >
-                        <Link to={ `${linkOption[`${option.name}`]()}` } >
+                        <Link to={ `${linkOption[`${option.name}`]()}` } style={{ fontWeight: 400}} >
                             <ListItemButton>
                                 <ListItemIcon>
                                     {option.icon}

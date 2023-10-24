@@ -1,6 +1,8 @@
 import { Divider, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import { arrayMenuUser } from './arrayMenuUser.jsx';
+import {linkOption} from "../../../utils/router/paths.js";
+import {Link} from "react-router-dom";
 
 const isUserRegistered = false;
 const isAdmin = false;
@@ -48,10 +50,12 @@ export const MenuUser = ({ anchorEl, open, handleClose }) => {
         {
             opcionesMenu.map((item, index) => {
                 return <MenuItem key={index} onClick={handleClose}>
-                    <ListItemIcon>
-                        {item.icon}
-                    </ListItemIcon>
-                    {item.name}
+                    <Link to={ `${linkOption[`${item.name}`]()}` } style={{ fontWeight: 400}} >
+                        <ListItemIcon>
+                            {item.icon}
+                        </ListItemIcon>
+                        {item.name}
+                    </Link>
                 </MenuItem>
             })
         }

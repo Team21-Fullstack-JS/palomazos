@@ -23,7 +23,7 @@ export const arrayMenuUser = {
     ],
     userRegisteredAdmin: [
         {
-            name: 'Administración',
+            name: 'Administracion',
             icon: <AdminPanelSettings fontSize="medium" />
         }
     ],

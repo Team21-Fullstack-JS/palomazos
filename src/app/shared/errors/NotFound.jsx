@@ -7,7 +7,7 @@ const styles = {
     container: css`
       height: 100vh;
       width: 100%;
-      background-image: url("./assets/not-found2.jpg");
+      background-image: url("/assets/not-found2.jpg");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
