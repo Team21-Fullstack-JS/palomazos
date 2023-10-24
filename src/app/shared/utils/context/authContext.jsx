@@ -8,31 +8,36 @@ export const AuthContext = createContext(); // --> Tiene el objeto Provider
 
 export function AuthContextProvider( { children }) {
 
+    const setAuthInLocalStorage = useCallback( function (usuario) {
+        window.localStorage.setItem("UsuarioPalomazos", JSON.stringify(usuario));
+    }, []);
+
+    const getTokenInLocalStorage = useCallback( function () {
+        return window.localStorage.getItem("UsuarioPalomazos");
+    }, []);
+
     const [isAuthenticated, setIsAuthenticated] = useState(
-        () => window.localStorage.getItem("usuarioLogueadoPalomazos")
+        () => window.localStorage.getItem("UsuarioPalomazos")
     );
-    /*const [usuario, setUsuario] = useState(window.localStorage.getItem("UsuarioPalomazos"));
 
     const login = useCallback(function () {
         setIsAuthenticated(true);
     }, []);
 
     const logout = useCallback( function () {
-        window.localStorage.removeItem("usuarioLogueadoPalomazos", true);
         window.localStorage.removeItem("UsuarioPalomazos", true);
         setIsAuthenticated(false);
-        setUsuario(null);
-    }, []);*/
+    }, []);
 
     const value = useMemo( ()=> (
         {
-            // login,
-            // logout,
+            login,
+            logout,
             isAuthenticated,
-            // usuario,
-            // setUsuario
+            setAuthInLocalStorage,
+            getTokenInLocalStorage
         }
-    ), [isAuthenticated]);//, login, logout, usuario, setUsuario]);
+    ), [isAuthenticated, login, logout, setAuthInLocalStorage, getTokenInLocalStorage]);
 
     return (
         <AuthContext.Provider value={ value }>

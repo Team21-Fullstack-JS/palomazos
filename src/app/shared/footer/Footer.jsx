@@ -16,6 +16,6 @@ function Copyright(props) {
 
 export const Footer = () => {
     return <footer className={styles.footer}>
-        <Copyright sx={{ mt: 4, mb: 2 }} />
+        <Copyright  /> {/*sx={{ mt: 4, mb: 4 }}*/}
     </footer>
 }
