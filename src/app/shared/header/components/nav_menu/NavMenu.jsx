@@ -9,7 +9,7 @@ export const NavMenu = () => {
                     return (
                         <Typography key={i} sx={{ minWidth: 100, lineHeight: '80px', color: 'white' }}>
 
-                            <Link to={ `${linkOption[`${item.name}`]()}` } style={{ fontWeight: 400}} >
+                            <Link to={ `${linkOption(`${item.name}`)}` } style={{ fontWeight: 400}} >
                                 { item.name }
                             </Link>
                         </Typography>

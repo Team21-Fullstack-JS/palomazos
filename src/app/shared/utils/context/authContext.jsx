@@ -25,7 +25,7 @@ export function AuthContextProvider( { children }) {
     }, []);
 
     const logout = useCallback( function () {
-        window.localStorage.removeItem("UsuarioPalomazos", true);
+        window.localStorage.removeItem("UsuarioPalomazos");
         setIsAuthenticated(false);
     }, []);
 

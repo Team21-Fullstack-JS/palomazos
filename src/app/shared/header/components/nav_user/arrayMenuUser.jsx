@@ -17,7 +17,7 @@ export const arrayMenuUser = {
             icon: <Settings fontSize="medium" />
         },
         {
-            name: 'Mis películas',
+            name: 'Mis peliculas',
             icon: <LiveTv fontSize="medium" />
         }
     ],

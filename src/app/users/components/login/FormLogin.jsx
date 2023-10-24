@@ -103,7 +103,7 @@ export const FormLogin = (props) => {
                 <Grid item>
                     <Typography component="p" variant="body2">
                         No tienes una cuenta?
-                        <Link to={ `${linkOption[`Registro`]()}` } style={{ fontWeight: 400}} >
+                        <Link to={ `${linkOption(`Registro`)}` } style={{ fontWeight: 400}} >
                             <span css={ styles.link }> Registrate </span>
                         </Link>
                     </Typography>

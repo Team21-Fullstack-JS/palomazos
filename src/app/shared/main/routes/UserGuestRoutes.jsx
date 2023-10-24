@@ -9,11 +9,7 @@ import { USUARIO_ } from '../../utils/router/paths.js';
 
 export function UserGuestRoutes() {
 
-    const userToken = JSON.parse(window.localStorage.getItem("usuarioLogueadoPalomazos"));
-    console.log("userToken: ", userToken);
-
     const { isAuthenticated } = useAuthContext();
-    console.log("isAuthenticated: ", isAuthenticated);
 
-    return isAuthenticated ? <Navigate to={`/${USUARIO_}/${userToken.id}/`}/> : <Outlet />;
+    return isAuthenticated ? <Navigate to={`${USUARIO_}/`}/> : <Outlet />;
 }
