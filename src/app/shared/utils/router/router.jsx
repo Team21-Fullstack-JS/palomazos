@@ -4,15 +4,16 @@ import {LandingPage} from "../../main/components/landingPage/LandingPage.jsx";
 import {Movies} from "../../main/components/movies/Movies.jsx";
 import {Contact} from "../../main/components/contact/Contact.jsx";
 import App from "../../../App.jsx";
+import {NotFound} from "../../errors/NotFound.jsx";
 
 export const router = createBrowserRouter([
     {
         path: LANDING,
         element: <App />,
-        errorElement: <div>404 Not Found</div>,
+        errorElement: <NotFound />,
         children: [
             {
-                path: LANDING,
+                index: true,
                 element: <LandingPage />,
             },
             {
