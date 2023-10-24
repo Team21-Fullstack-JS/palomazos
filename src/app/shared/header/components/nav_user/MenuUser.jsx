@@ -4,14 +4,26 @@ import { arrayMenuUser } from './arrayMenuUser.jsx';
 import {linkOption} from "../../../utils/router/paths.js";
 import {Link} from "react-router-dom";
 
-const isUserRegistered = false;
-const isAdmin = false;
+import { useAuthContext } from '../../../utils/hooks/useAuthContext.js';
 
-const opcionesMenu =
-    isUserRegistered && isAdmin ? [...arrayMenuUser.userRegisteredNoAdmin, ...arrayMenuUser.userRegisteredAdmin] :
-    isUserRegistered && !isAdmin ? [...arrayMenuUser.userRegisteredNoAdmin] : arrayMenuUser.userGuest;
+export const MenuUser = ({ anchorEl, open, handleClose, setOpenModal }) => {
 
-export const MenuUser = ({ anchorEl, open, handleClose }) => {
+    const { isAuthenticated, getTokenInLocalStorage } = useAuthContext();
+
+    let userAuth = null;
+    if (isAuthenticated)
+        userAuth = getTokenInLocalStorage();
+
+    const isAdmin = userAuth && userAuth.role === 'ADMIN';
+
+    const opcionesMenu =
+        isAuthenticated && isAdmin ? [...arrayMenuUser.userRegisteredNoAdmin, ...arrayMenuUser.userRegisteredAdmin] :
+        isAuthenticated && !isAdmin ? [...arrayMenuUser.userRegisteredNoAdmin] : arrayMenuUser.userGuest;
+
+    const handlerOpenModal = () => {
+        setOpenModal(true);
+    }
+
     return <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -50,19 +62,20 @@ export const MenuUser = ({ anchorEl, open, handleClose }) => {
         {
             opcionesMenu.map((item, index) => {
                 return <MenuItem key={index} onClick={handleClose}>
-                    <Link to={ `${linkOption[`${item.name}`]()}` } style={{ fontWeight: 400}} >
+                    <Link to={ `${linkOption(`${item.name}`)}` } style={{ fontWeight: 400}} >
                         <ListItemIcon>
                             {item.icon}
                         </ListItemIcon>
                         {item.name}
                     </Link>
+
                 </MenuItem>
             })
         }
 
-        { isAdmin && <div>
+        { isAuthenticated && <div>
             <Divider />
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handlerOpenModal}>
                 <ListItemIcon>
                     <Logout fontSize="small" />
                 </ListItemIcon>
