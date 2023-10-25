@@ -45,7 +45,8 @@ export function AuthContextProvider( { children }) {
             isAuthenticated,
             setAuthInLocalStorage,
             getTokenInLocalStorage,
-            setUserInLocalStorage
+            setUserInLocalStorage,
+            getUserInLocalStorage
         }
     ), [
         isAuthenticated,
@@ -53,7 +54,8 @@ export function AuthContextProvider( { children }) {
         logout,
         setAuthInLocalStorage,
         getTokenInLocalStorage,
-        setUserInLocalStorage
+        setUserInLocalStorage,
+        getUserInLocalStorage
     ]);
 
     return (

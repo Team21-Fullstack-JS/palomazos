@@ -5,8 +5,10 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import {Box} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import { TailSpin } from "svg-loaders-react";
+import {LoaderBar} from "../loader/LoaderBar.jsx";
+import {css} from "@emotion/react";
 
 /**Funcion que muestra una ventana de Dialogo Modal */
 export function ModalDialog(props) {
@@ -42,14 +44,29 @@ export function ModalDialog(props) {
                         <ListItemText primary={boton.nombre} />
                     </ListItem>))
                     :
-                    <Box sx={{ width: '100%', display: display, justifyContent: 'center'}}>
-                        <div style={{ height: '40px', width: '40px' }}>
-                            {/*<img src='/assets/tail-spin.svg' style={{ height: '40px', width: '40px'}} />*/}
-                            <TailSpin stroke="#2d3748" stopColor="#2d3748" stop="#2d3748" fill="#2d3748" />
+                    <Container component="main" maxWidth="xs" css={styles.container} >
+                        <div css={styles.containerLoader}>
+                            <LoaderBar />
                         </div>
-                    </Box>
+                    </Container>
                 }
             </List>
         </Dialog>
     );
+}
+
+const styles = {
+    container: css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: .5rem;
+    `,
+    containerLoader: css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
+      width: 45px;
+    `,
 }
