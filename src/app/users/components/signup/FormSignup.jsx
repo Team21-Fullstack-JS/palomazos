@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { css } from "@emotion/react";
@@ -18,6 +18,8 @@ export const FormSignup = (props) => {
 
     const [disabledButton, setDisabledButton] = useState(false);
 
+    let navigate = useNavigate();
+
     const { setOpenTransitionMessage, setMessageTransitionMessage, setSeverityTransitionMessage } = props;
 
     const requestSignup = useCallback(async (body) => {
@@ -31,8 +33,8 @@ export const FormSignup = (props) => {
             setMessageTransitionMessage(`${data.message}. Redireccionando a inicio de sesión...`);
 
             setTimeout(() => {
-                <Navigate to={`${USUARIOS}`} />
-            }, 1600);
+                navigate(`${USUARIOS}`, { replace: true });
+            }, 1500);
 
         } else {
             setSeverityTransitionMessage('error');

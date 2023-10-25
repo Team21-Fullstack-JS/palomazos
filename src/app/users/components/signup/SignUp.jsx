@@ -14,7 +14,7 @@ export const SignUp = () => {
             <CssBaseline />
             <Box
                 sx={{
-                    marginTop: 2,
+                    marginTop: 1,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -31,17 +31,17 @@ export const SignUp = () => {
                     Crear cuenta
                 </Typography>
 
-                <FormSignup
-                    setOpenTransitionMessage={setOpenTransitionMessage}
-                    setMessageTransitionMessage={setMessageTransitionMessage}
-                    setSeverityTransitionMessage={setSeverityTransitionMessage}
-                />
-
                 <TransitionMessage
                     message={messageTransitionMessage}
                     open={openTransitionMessage}
                     setOpen={setOpenTransitionMessage}
                     severity={severityTransitionMessage} // error, warning, info, success
+                />
+
+                <FormSignup
+                    setOpenTransitionMessage={setOpenTransitionMessage}
+                    setMessageTransitionMessage={setMessageTransitionMessage}
+                    setSeverityTransitionMessage={setSeverityTransitionMessage}
                 />
             </Box>
         </Container>
