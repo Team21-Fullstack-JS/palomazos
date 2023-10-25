@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import {Box} from "@mui/material";
-import {Done} from "@mui/icons-material";
+import { TailSpin } from "svg-loaders-react";
 
 /**Funcion que muestra una ventana de Dialogo Modal */
 export function ModalDialog(props) {
@@ -44,7 +44,8 @@ export function ModalDialog(props) {
                     :
                     <Box sx={{ width: '100%', display: display, justifyContent: 'center'}}>
                         <div style={{ height: '40px', width: '40px' }}>
-                            <img src='/assets/tail-spin.svg' style={{ height: '40px', width: '40px'}} />
+                            {/*<img src='/assets/tail-spin.svg' style={{ height: '40px', width: '40px'}} />*/}
+                            <TailSpin stroke="#2d3748" stopColor="#2d3748" stop="#2d3748" fill="#2d3748" />
                         </div>
                     </Box>
                 }
