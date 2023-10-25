@@ -8,16 +8,24 @@ export const AuthContext = createContext(); // --> Tiene el objeto Provider
 
 export function AuthContextProvider( { children }) {
 
-    const setAuthInLocalStorage = useCallback( function (usuario) {
-        window.localStorage.setItem("UsuarioPalomazos", JSON.stringify(usuario));
+    const setAuthInLocalStorage = useCallback( function (auth) {
+        window.localStorage.setItem("authPalomazos", JSON.stringify(auth));
     }, []);
 
     const getTokenInLocalStorage = useCallback( function () {
-        return window.localStorage.getItem("UsuarioPalomazos");
+        return window.localStorage.getItem("authPalomazos");
+    }, []);
+
+    const setUserInLocalStorage = useCallback( function (usuario) {
+        window.localStorage.setItem("userPalomazos", JSON.stringify(usuario));
+    }, []);
+
+    const getUserInLocalStorage = useCallback( function () {
+        return window.localStorage.getItem("userPalomazos");
     }, []);
 
     const [isAuthenticated, setIsAuthenticated] = useState(
-        () => window.localStorage.getItem("UsuarioPalomazos")
+        () => window.localStorage.getItem("authPalomazos")
     );
 
     const login = useCallback(function () {
@@ -25,7 +33,8 @@ export function AuthContextProvider( { children }) {
     }, []);
 
     const logout = useCallback( function () {
-        window.localStorage.removeItem("UsuarioPalomazos");
+        window.localStorage.removeItem("authPalomazos");
+        window.localStorage.removeItem("userPalomazos");
         setIsAuthenticated(false);
     }, []);
 
@@ -35,9 +44,17 @@ export function AuthContextProvider( { children }) {
             logout,
             isAuthenticated,
             setAuthInLocalStorage,
-            getTokenInLocalStorage
+            getTokenInLocalStorage,
+            setUserInLocalStorage
         }
-    ), [isAuthenticated, login, logout, setAuthInLocalStorage, getTokenInLocalStorage]);
+    ), [
+        isAuthenticated,
+        login,
+        logout,
+        setAuthInLocalStorage,
+        getTokenInLocalStorage,
+        setUserInLocalStorage
+    ]);
 
     return (
         <AuthContext.Provider value={ value }>

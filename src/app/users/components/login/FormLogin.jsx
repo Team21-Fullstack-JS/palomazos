@@ -59,7 +59,7 @@ export const FormLogin = (props) => {
     });
 
     return (
-        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 2 }}>
             <TextField
                 margin="normal"
                 required
@@ -97,9 +97,9 @@ export const FormLogin = (props) => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
             >
-                Login
+                Iniciar sesión
             </Button>
-            <Grid container>
+            <Grid container justifyContent="flex-end">
                 <Grid item>
                     <Typography component="p" variant="body2">
                         No tienes una cuenta?
