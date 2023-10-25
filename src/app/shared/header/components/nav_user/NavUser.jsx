@@ -37,7 +37,8 @@ export const NavUser = () => {
                 setOpenModal(false);
                 setIsSpinner(false);
             },1300);
-        }
+        } else
+            setOpenModal(false);
     }
 
     return <>

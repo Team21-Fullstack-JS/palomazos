@@ -5,8 +5,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import {Box, Container} from "@mui/material";
-import { TailSpin } from "svg-loaders-react";
+import {Container} from "@mui/material";
 import {LoaderBar} from "../loader/LoaderBar.jsx";
 import {css} from "@emotion/react";
 
