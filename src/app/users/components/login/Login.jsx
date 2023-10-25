@@ -22,7 +22,7 @@ export const Login = () => {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 2,
+                        marginTop: 1,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -39,17 +39,17 @@ export const Login = () => {
                         Iniciar sesión
                     </Typography>
 
-                    <FormLogin
-                        setOpenTransitionMessage={setOpenTransitionMessage}
-                        setMessageTransitionMessage={setMessageTransitionMessage}
-                        setSeverityTransitionMessage={setSeverityTransitionMessage}
-                    />
-
                     <TransitionMessage
                         message={messageTransitionMessage}
                         open={openTransitionMessage}
                         setOpen={setOpenTransitionMessage}
                         severity={severityTransitionMessage} // error, warning, info, success
+                    />
+
+                    <FormLogin
+                        setOpenTransitionMessage={setOpenTransitionMessage}
+                        setMessageTransitionMessage={setMessageTransitionMessage}
+                        setSeverityTransitionMessage={setSeverityTransitionMessage}
                     />
                 </Box>
             </Container>
