@@ -7,8 +7,9 @@
  * */
 
 export function getMovies(section, lang, page) {
-    const URL = `${import.meta.env.VITE_API_MOVIES_DB}${section}?language=${lang}&page=${page}`;
-    console.log();
+    const API_MOVIES_DB = 'https://api.themoviedb.org/3';
+
+    const URL = `${API_MOVIES_DB}${section}?language=${lang}&page=${page}`;
 
     const options = {
         method: 'GET',
