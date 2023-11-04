@@ -3,7 +3,7 @@ import { getMovies } from "../../../requests/httpClientMoviesDB.js";
 
 export const LandingPage = () => {
 
-    getMovies(import.meta.env.VITE_API_MOVIES_DB_POPULAR, 'es-US', 1).then(data => console.log(data));
+    getMovies('/movie/popular', 'es-US', 1).then(data => console.log(data));
 
     return (
         <Box sx={{
