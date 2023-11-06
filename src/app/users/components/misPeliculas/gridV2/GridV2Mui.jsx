@@ -39,7 +39,7 @@ export const GridV2Mui = ( { array }) => {
                     // border: '1px solid green',
                     width: 'auto',
                     height: 'auto',
-                    marginTop: '1rem'
+                    marginTop: '0.2rem'
                 }}
             >
                 { array.map((item) => (
