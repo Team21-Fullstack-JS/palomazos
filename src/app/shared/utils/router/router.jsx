@@ -21,7 +21,8 @@ import {UserGuestRoutes} from "../../main/routes/UserGuestRoutes.jsx";
 import {UserPrivateRoutes} from "../../main/routes/UserPrivateRoutes.jsx";
 import {MiCuenta} from "../../../users/components/miCuenta/MiCuenta.jsx";
 import {MisPeliculas} from "../../../users/components/misPeliculas/MisPeliculas.jsx";
-import {GetUser} from "./loaders/GetUser.js";
+import { GetUser } from "./loaders/GetUser.js";
+import { GetUserReviews } from "./loaders/GetUserReviews.js";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: MIS_PELICULAS,
+                        loader: GetUserReviews,
                         element: <MisPeliculas />,
                     }
                 ]

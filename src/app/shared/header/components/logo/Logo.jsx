@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import logoImage from '/review.svg';
 
 const styles = {
     container: css`
@@ -18,7 +19,7 @@ export const Logo = () => {
     return <figure css={ styles.container }>
         <img
             css={ styles.logo }
-            src="./review.svg"
+            src={ logoImage }
             alt="Logo"
         />
     </figure>
