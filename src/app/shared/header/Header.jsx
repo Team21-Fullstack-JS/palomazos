@@ -11,7 +11,7 @@ import {NavMenuSidebar} from "./components/nav_menu_sidebar/NavMenuSidebar.jsx";
 export const Header = () => {
     return <ThemeProvider theme={theme}>
         <header className={styles.header__container}>
-            <Container component="main" maxWidth="lg" >
+            <Container component="header" Width="lg" >
                 <div className={styles.header}>
                     <Box className={styles.header__container_navMenuSidebar} sx={{ display: { xxs: 'flex', sm: 'none' }}} >
                         <NavMenuSidebar />

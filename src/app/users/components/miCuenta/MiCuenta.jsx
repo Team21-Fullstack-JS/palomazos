@@ -1,17 +1,10 @@
-import {Box, Container, CssBaseline, Typography} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 import {LoaderBar} from "../../../shared/components/loader/LoaderBar.jsx";
 import {css} from "@emotion/react";
 import {useLoaderData} from "react-router";
 import { useAuthContext } from '../../../shared/utils/hooks/useAuthContext.js';
 
 const styles = {
-    container: css`
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    `,
     containerLoader: css`
       display: flex;
       justify-content: center;
@@ -36,8 +29,7 @@ export const MiCuenta = () => {
         setUserInLocalStorage(data.data);
 
     return data ? (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <Container component="section" maxWidth="xs" >
             <Box
                 sx={{
                     marginTop: 4,
@@ -52,7 +44,7 @@ export const MiCuenta = () => {
             </Box>
         </Container>
     ) : (
-        <Container component="main" maxWidth="xs" css={styles.container} >
+        <Container component="section" maxWidth="xs" css={styles.container} >
             <p css={styles.message}>
                 Cargando datos del usuario...
             </p>

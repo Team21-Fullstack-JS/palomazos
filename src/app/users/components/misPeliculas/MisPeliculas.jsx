@@ -23,14 +23,19 @@ export const MisPeliculas = () => {
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            // alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.5rem',
-            // paddingTop: '2rem',
+            fontSize: '1.3rem',
             width: 'auto',
             // border: '1px solid red'
         }}>
-            <Box>
+            <Box
+                sx={{
+                    // border: '1px solid blue',
+                    width: '100%',
+                    marginTop: '1rem',
+                }}
+            >
                 Mis Peliculas
             </Box>
             <GridV2Mui array={data.data.reviews} />
@@ -47,7 +52,7 @@ const Loader = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.5rem',
+            fontSize: '1.2rem',
             // paddingTop: '2rem',
             width: 'auto',
         }}>
