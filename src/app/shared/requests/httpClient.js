@@ -35,7 +35,7 @@ export async function requestApi(path, req, body, token) {
             headers: new Headers({
                 "Content-Type": "application/json; charset=utf-8",
                 "Access-Control-Allow-Origin": "*",
-                "Authorization": token ? `Bearer ${token}` : "",
+                "Authorization": token,
             }),
         });
     }
@@ -48,7 +48,7 @@ export async function requestApi(path, req, body, token) {
             headers: new Headers({
                 "Content-Type": "application/json; charset=utf-8",
                 "Access-Control-Allow-Origin": "*",
-                "Authorization": token ? `Bearer ${token}` : "",
+                "Authorization": token,
             }),
         });
     } else {
