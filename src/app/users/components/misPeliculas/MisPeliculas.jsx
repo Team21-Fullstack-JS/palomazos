@@ -1,82 +1,121 @@
-import {Box, Container} from "@mui/material";
-import { GridV2Mui } from "./gridV2/GridV2Mui.jsx";
-import {LoaderBar} from "../../../shared/components/loader/LoaderBar.jsx";
-import {css} from "@emotion/react";
+import {useCallback, useEffect, useState} from "react";
 import {useLoaderData} from "react-router";
 
+import {Box} from "@mui/material";
+import { GridV2Mui } from "./gridV2/GridV2Mui.jsx";
+
+import {BannerUsers} from "../banner/BannerUsers.jsx";
+import {ListMovies} from "../listMovies/ListMovies.jsx";
+import {Loader} from "../loader/Loader.jsx";
+import {getMovies} from "../../../shared/requests/httpClientMoviesDB.js";
 import bgImage from '/assets/movie-director.jpg'
 
+import {IMG_URL} from "../../../shared/requests/httpClientMoviesDB.js";
+
+const UPCOMING = '/movie/upcoming';
+const TOP_RATED = '/movie/top_rated';
+const NOW_PLAYING = '/movie/now_playing';
+const POPULAR = '/movie/popular';
+import {css} from "@emotion/react";
+
 const styles = {
-    containerLoader: css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px;
-      width: 50px;
-      margin-top: 1rem;
+    containerSectionMovies: css`
+      margin-bottom: 1.4rem;
     `,
 }
 
 export const MisPeliculas = () => {
+    const [arrayMovies, setArrayMovies] = useState(null);
+
+    const fetchMovies = useCallback( async () => {
+        const res = await Promise.all([
+            await getMovies(NOW_PLAYING, 'es-US', 3),
+            await getMovies(POPULAR, 'es-US', 2),
+            await getMovies(TOP_RATED, 'es-US', 1),
+            await getMovies(UPCOMING, 'es-US', 1)
+        ]);
+
+        const arrayReq = [];
+
+        res.forEach((req) => {
+            const movies = [];
+
+            for (let i = 0; i < 6; i++) {
+                const newMovie = {};
+                newMovie.img = IMG_URL + req[i].backdrop_path;
+                newMovie.title = req[i].title;
+                newMovie.year = new Date(req[i].release_date).getFullYear();
+
+                if (i === 0) {
+                    newMovie.rows = 2;
+                    newMovie.cols = 2;
+                    newMovie.featured = true;
+                } else if (i === 3) {
+                    newMovie.rows = 2;
+                    newMovie.cols = 2;
+                }
+                movies.push(newMovie);
+            }
+
+            arrayReq.push(movies);
+        });
+
+        setArrayMovies(arrayReq);
+    }, []);
 
     const data = useLoaderData();
 
-    return data ? (
+    useEffect(() => {
+        if (!arrayMovies) {
+            fetchMovies();
+        }
+    }, [arrayMovies, fetchMovies]);
+
+    return data && arrayMovies ? (
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
             // alignItems: 'center',
             justifyContent: 'center',
             fontSize: '1.3rem',
-            width: 'auto',
+            width: '100%',
             // border: '1px solid red'
         }}>
-            <Container
-                component='figure'
-                sx={{
-                    // border: {xs: '1px solid green', sm: '1px solid red', md: '1px solid blue'},
-                    margin: {xs: '-1rem 0'},
-                    marginLeft: {xs: '-2rem', sm: '-3rem', md: '0'},
-                    height: {xs: '90px', sm: '150px', md: '200px'},
-                    width: {xs: 'calc(100% + 4rem)', sm: 'calc(100% + 5.5rem)', md: 'auto'},
-                    backgroundImage: `url(${bgImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-            >
-            </Container>
+            <BannerUsers bgImage={bgImage} />
             <Box
                 sx={{
                     // border: '1px solid blue',
                     width: '100%',
-                    marginTop: '2rem',
+                    marginTop: '3rem',
                 }}
             >
                 Mis Peliculas
             </Box>
             <GridV2Mui array={data.data.reviews} />
+            <Box
+                sx={{
+                    width: '100%',
+                    marginTop: '3rem'
+                }}
+            >
+                <div css={styles.containerSectionMovies}>
+                    <ListMovies title={'En cartelera'} section='NOW_PLAYING' array={arrayMovies[0]} />
+                </div>
+
+                <div css={styles.containerSectionMovies}>
+                    <ListMovies title={'Populares'}  section='POPULAR' array={arrayMovies[1]} />
+                </div>
+
+                <div css={styles.containerSectionMovies}>
+                    <ListMovies title={'Mejor calificadas'} section='TOP_RATED' array={arrayMovies[2]} />
+                </div>
+
+                <div css={styles.containerSectionMovies}>
+                    <ListMovies title={'Próximos estrenos'} section='UPCOMING' array={arrayMovies[3]} />
+                </div>
+            </Box>
         </Box>
     ) : (
-        <Loader />
-    );
-}
-
-const Loader = () => {
-    return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '1.2rem',
-            // paddingTop: '2rem',
-            width: 'auto',
-        }}>
-            Cargando datos...
-            <div css={styles.containerLoader}>
-                <LoaderBar />
-            </div>
-        </Box>
+        <Loader message={"Cargando tus peliculas..."} />
     );
 }

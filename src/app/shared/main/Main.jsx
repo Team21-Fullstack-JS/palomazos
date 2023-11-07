@@ -7,7 +7,14 @@ import {Container} from "@mui/material";
 export const Main = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="lg" >
+            <Container
+                component="main"
+                // maxWidth="lg"
+                sx={{
+                    // maxWidth: {xs: "false", md: "lg"},
+                    // border: '1px solid violet',
+                }}
+            >
                 <main className={styles.main}>
                     <Outlet />
                 </main>
