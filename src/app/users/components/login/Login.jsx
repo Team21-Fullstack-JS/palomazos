@@ -18,7 +18,7 @@ export const Login = () => {
     const [severityTransitionMessage, setSeverityTransitionMessage] = useState('success');
 
     return (
-            <Container component="main" maxWidth="xs">
+            <Container component="section" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
