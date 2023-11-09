@@ -74,7 +74,7 @@ export const FormSignup = (props) => {
                         label="Nombre"
                         name="firstName"
                         autoComplete="firstName"
-                        autoFocus
+                        // autoFocus
                         value={formik.values.firstName}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -91,7 +91,7 @@ export const FormSignup = (props) => {
                         label="Apellido"
                         name="lastName"
                         autoComplete="lastName"
-                        autoFocus
+                        // autoFocus
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -108,7 +108,7 @@ export const FormSignup = (props) => {
                         label="Correo electrónico"
                         name="email"
                         autoComplete="email"
-                        autoFocus
+                        // autoFocus
                         value={formik.values.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}

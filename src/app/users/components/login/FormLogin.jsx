@@ -68,7 +68,7 @@ export const FormLogin = (props) => {
                 label="Correo electrónico"
                 name="email"
                 autoComplete="email"
-                autoFocus
+                // autoFocus
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
