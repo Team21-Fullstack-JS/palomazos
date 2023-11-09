@@ -9,7 +9,7 @@ export const LandingPage = () => {
             fontSize: '1.5rem',
             paddingTop: '2rem'
         }}>
-            This is the Landing Page!
+            Esta es la Landing Page!
         </Box>
     )
 }

@@ -9,7 +9,7 @@ const styles = {
       align-items: center;
       height: 50px;
       width: 50px;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     `,
 }
 

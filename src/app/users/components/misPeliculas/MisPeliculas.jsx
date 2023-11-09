@@ -10,17 +10,20 @@ import {Loader} from "../loader/Loader.jsx";
 import {getMovies} from "../../../shared/requests/httpClientMoviesDB.js";
 import bgImage from '/assets/movie-director.jpg'
 
-import {IMG_URL} from "../../../shared/requests/httpClientMoviesDB.js";
+import {css} from "@emotion/react";
 
+import {IMG_URL} from "../../../shared/requests/httpClientMoviesDB.js";
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
 const NOW_PLAYING = '/movie/now_playing';
 const POPULAR = '/movie/popular';
-import {css} from "@emotion/react";
 
 const styles = {
     containerSectionMovies: css`
       margin-bottom: 1.4rem;
+    `,
+    containerLoader: css`
+        margin-top: 2rem;
     `,
 }
 
@@ -116,6 +119,8 @@ export const MisPeliculas = () => {
             </Box>
         </Box>
     ) : (
-        <Loader message={"Cargando tus peliculas..."} />
+        <div css={styles.containerLoader}>
+            <Loader message={"Cargando tus peliculas..."} />
+        </div>
     );
 }

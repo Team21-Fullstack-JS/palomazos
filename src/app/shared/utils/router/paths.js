@@ -1,4 +1,4 @@
-const BASE = '/palomazos/';
+export const BASE = '/palomazos/';
 
 //MENÚ PRINCIPAL: LOS 4
 export const LANDING = BASE;

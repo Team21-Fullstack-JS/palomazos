@@ -3,10 +3,20 @@
  */
 
 import { createContext, useState, useCallback, useMemo } from "react";
+import { useLocation } from 'react-router-dom';
+import { BASE, MOVIES, CONTACT } from "../router/paths.js";
 
 export const AuthContext = createContext(); // --> Tiene el objeto Provider
 
 export function AuthContextProvider( { children }) {
+
+    let location = useLocation();
+
+    const [selectedUserOption, setSelectedUserOption] = useState(null);
+    const [selectedGeneralOption, setSelectedGeneralOption] = useState(
+        () => location.pathname === BASE ? 0 :
+            location.pathname === MOVIES ? 1 :
+            location.pathname === CONTACT ? 2 : null);
 
     const setAuthInLocalStorage = useCallback( function (auth) {
         window.localStorage.setItem("authPalomazos", JSON.stringify(auth));
@@ -46,7 +56,11 @@ export function AuthContextProvider( { children }) {
             setAuthInLocalStorage,
             getTokenInLocalStorage,
             setUserInLocalStorage,
-            getUserInLocalStorage
+            getUserInLocalStorage,
+            selectedUserOption,
+            setSelectedUserOption,
+            selectedGeneralOption,
+            setSelectedGeneralOption
         }
     ), [
         isAuthenticated,
@@ -55,7 +69,11 @@ export function AuthContextProvider( { children }) {
         setAuthInLocalStorage,
         getTokenInLocalStorage,
         setUserInLocalStorage,
-        getUserInLocalStorage
+        getUserInLocalStorage,
+        selectedUserOption,
+        setSelectedUserOption,
+        selectedGeneralOption,
+        setSelectedGeneralOption
     ]);
 
     return (
