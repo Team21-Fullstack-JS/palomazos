@@ -15,11 +15,14 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 
 import { arrayMenu } from '../nav_menu/arrayMenu.jsx';
 import { linkOption } from "../../../utils/router/paths.js";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useAuthContext} from "../../../utils/hooks/useAuthContext.js";
 
 export const NavMenuSidebar = () => {
 
     const [open, setOpen] = useState(false);
+
+    const { selectedGeneralOption, setSelectedGeneralOption, setSelectedUserOption } = useAuthContext();
 
     const handleDrawerToggle = () => {
         setOpen(!open);
@@ -32,17 +35,28 @@ export const NavMenuSidebar = () => {
             onKeyDown={handleDrawerToggle}
         >
             <List>
-                {arrayMenu.map((option, index) => (
-                    <ListItem key={option.name} >
-                        <Link to={ `${linkOption(`${option.name}`)}` } style={{ fontWeight: 400}} >
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {option.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={option.name} />
-                            </ListItemButton>
+                {arrayMenu.map((option, i) => (
+                    <ListItemButton
+                        key={option.name}
+                        selected={ i === selectedGeneralOption }
+                        onClick={() => {
+                            setSelectedUserOption(null)
+                            setSelectedGeneralOption(i)
+                        }}
+                    >
+                        <Link
+                            to={ `${linkOption(`${option.name}`)}` }
+                        >
+                            <div>
+                                <ListItemButton >
+                                    <ListItemIcon>
+                                        {option.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={option.name} />
+                                </ListItemButton>
+                            </div>
                         </Link>
-                    </ListItem>
+                    </ListItemButton>
                 ))}
             </List>
             <Divider />

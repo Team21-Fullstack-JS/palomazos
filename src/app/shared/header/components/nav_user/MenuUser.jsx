@@ -8,7 +8,13 @@ import { useAuthContext } from '../../../utils/hooks/useAuthContext.js';
 
 export const MenuUser = ({ anchorEl, open, handleClose, setOpenModal }) => {
 
-    const { isAuthenticated, getTokenInLocalStorage } = useAuthContext();
+    const {
+        isAuthenticated,
+        getTokenInLocalStorage,
+        selectedUserOption,
+        setSelectedUserOption,
+        setSelectedGeneralOption
+    } = useAuthContext();
 
     let userAuth = null;
     if (isAuthenticated)
@@ -22,6 +28,12 @@ export const MenuUser = ({ anchorEl, open, handleClose, setOpenModal }) => {
 
     const handlerOpenModal = () => {
         setOpenModal(true);
+    }
+
+    const handleSelected = (item) => {
+        setSelectedUserOption(item.name);
+        setSelectedGeneralOption(null);
+        handleClose();
     }
 
     return <Menu
@@ -61,7 +73,7 @@ export const MenuUser = ({ anchorEl, open, handleClose, setOpenModal }) => {
     >
         {
             opcionesMenu.map((item, index) => {
-                return <MenuItem key={index} onClick={handleClose}>
+                return <MenuItem key={index} onClick={() => handleSelected(item)} selected={item.name === selectedUserOption}>
                     <Link to={ `${linkOption(`${item.name}`)}` } style={{ fontWeight: 400}} >
                         <ListItemIcon>
                             {item.icon}
@@ -75,7 +87,7 @@ export const MenuUser = ({ anchorEl, open, handleClose, setOpenModal }) => {
 
         { isAuthenticated && <div>
             <Divider />
-            <MenuItem onClick={handlerOpenModal}>
+            <MenuItem onClick={handlerOpenModal} >
                 <ListItemIcon>
                     <Logout fontSize="small" />
                 </ListItemIcon>
