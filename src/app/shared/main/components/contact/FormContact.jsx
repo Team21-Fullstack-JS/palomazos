@@ -3,6 +3,8 @@ import {useFormik} from "formik";
 import {Box, Button, TextField} from "@mui/material";
 import * as Yup from 'yup';
 
+const ELASTIC_EMAIL_TOKEN = import.meta.env.VITE_ELASTICEMAIL_SECURITY_TOKEN;
+
 export const FormContact = (props) => {
 
     const [disabledButton, setDisabledButton] = useState(false);
@@ -15,7 +17,9 @@ export const FormContact = (props) => {
         const message = body.message;
 
         Email.send({
-            SecureToken : import.meta.env.VITE_ELASTICEMAIL_SECURITY_TOKEN,
+            Host : import.meta.env.VITE_ELASTICEMAIL_HOST,
+            Username : import.meta.env.VITE_ELASTICEMAIL_USER,
+            Password : import.meta.env.VITE_ELASTICEMAIL_PASS,
             To : from,
             From : from,
             Subject : `Palomazos, comentario de ${userEmail}`,
