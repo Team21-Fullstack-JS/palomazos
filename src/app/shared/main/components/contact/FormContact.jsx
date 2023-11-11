@@ -15,7 +15,7 @@ export const FormContact = (props) => {
         const message = body.message;
 
         Email.send({
-            SecureToken : `${import.meta.env.VITE_ELASTICEMAIL_SECURITY_TOKEN}`,
+            SecureToken : import.meta.env.VITE_ELASTICEMAIL_SECURITY_TOKEN,
             To : from,
             From : from,
             Subject : `Palomazos, comentario de ${userEmail}`,
