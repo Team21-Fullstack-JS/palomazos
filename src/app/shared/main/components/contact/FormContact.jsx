@@ -3,8 +3,6 @@ import {useFormik} from "formik";
 import {Box, Button, TextField} from "@mui/material";
 import * as Yup from 'yup';
 
-const ELASTIC_EMAIL_TOKEN = import.meta.env.VITE_ELASTICEMAIL_SECURITY_TOKEN;
-
 export const FormContact = (props) => {
 
     const [disabledButton, setDisabledButton] = useState(false);
@@ -17,9 +15,7 @@ export const FormContact = (props) => {
         const message = body.message;
 
         Email.send({
-            Host : import.meta.env.VITE_ELASTICEMAIL_HOST,
-            Username : import.meta.env.VITE_ELASTICEMAIL_USER,
-            Password : import.meta.env.VITE_ELASTICEMAIL_PASS,
+            SecureToken : "842d730f-66ed-48f3-be3a-f24ffdc9c020",
             To : from,
             From : from,
             Subject : `Palomazos, comentario de ${userEmail}`,
@@ -64,7 +60,7 @@ export const FormContact = (props) => {
     });
 
     return (
-        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 2 }}>
+        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
                 margin="normal"
                 required
