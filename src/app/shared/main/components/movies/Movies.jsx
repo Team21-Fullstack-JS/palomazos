@@ -1,4 +1,5 @@
 import {Box} from "@mui/material";
+import { useCallback, useEffect, useState} from "react";
 import {useLoaderData} from "react-router"
 
 import {BannerMovies} from "../movies/Banner/BannerMovies.jsx";
@@ -31,9 +32,43 @@ export const Movies = () => {
             await getMovies(TOP_RATED, 'es-US', 1),
             await getMovies(UPCOMING, 'es-US', 1)
         ]);
+
+        const arrayReq = [];
+
+        res.forEach((req) => {
+            const movies = [];
+
+            for (let i = 0; i < 6; i++) {
+                const newMovie = {};
+                newMovie.img = IMG_URL + req[i].backdrop_path;
+                newMovie.title = req[i].title;
+                newMovie.year = new Date(req[i].release_date).getFullYear();
+
+                if (i === 0) {
+                    newMovie.rows = 2;
+                    newMovie.cols = 2;
+                    newMovie.featured = true;
+                } else if (i === 3) {
+                    newMovie.rows = 2;
+                    newMovie.cols = 2;
+                }
+                movies.push(newMovie);
+            }
+
+            arrayReq.push(movies);
+        });
+
+        setArrayMovies(arrayReq);
     }
-    )
+    );
     const data = useLoaderData();
+
+    useEffect(() => {
+        if (!arrayMovies) {
+            fetchMovies();
+        }
+    }, [arrayMovies, fetchMovies]);
+
     return (
         <Box sx={{
             display: 'flex',
