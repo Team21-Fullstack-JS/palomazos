@@ -1,6 +1,7 @@
 import {Box} from "@mui/material";
 import {useLoaderData} from "react-router"
 
+import {BannerMovies} from "../movies/Banner/BannerMovies.jsx";
 import {ListMovies} from "../../../../users/components/listMovies/ListMovies";
 import {getMovies} from "../../../requests/httpClientMoviesDB";
 import {Loader} from "../loader/Loader.jsx";
@@ -40,12 +41,12 @@ export const Movies = () => {
             fontSize: '1.5rem',
             paddingTop: '2rem'
         }}>
-             <BannerUsers bgImage={bgImage} />
+             <BannerMovies bgImage={bgImage} />
              <Box
                 sx={{
                     // border: '1px solid blue',
                     width: '100%',
-                    marginTop: '1rem',
+                    marginTop: '3rem',
                 }}
             >
                  Películas:
