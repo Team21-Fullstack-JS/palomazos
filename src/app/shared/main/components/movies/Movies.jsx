@@ -71,9 +71,11 @@ export const Movies = () => {
     return arrayMovies ? (
         <Box sx={{
             display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'center',
             fontSize: '1.5rem',
-            paddingTop: '2rem'
+            paddingTop: '2rem',
+            width: '100%',
         }}>
              <BannerMovies bgImage={bgImage} />
              <Box
