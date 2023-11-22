@@ -3,6 +3,10 @@ export const BASE = '/palomazos/';
 //MENÚ PRINCIPAL: LOS 4
 export const LANDING = BASE;
 export const MOVIES  = BASE + "movies";
+export const MOVIES_POPULAR  = MOVIES + "/popular";
+export const MOVIES_UPCOMING  = MOVIES + "/upcoming";
+export const MOVIES_NOW_PLAYING  = MOVIES + "/now-playing";
+export const MOVIES_TOP_RATED  = MOVIES + "/top-rated";
 export const CONTACT = BASE + 'contact';
 
 //USUARIOS NO REGISTRADOS

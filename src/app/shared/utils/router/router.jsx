@@ -1,17 +1,16 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, redirect} from "react-router-dom";
 import {
     CONTACT,
     DASHBOARD,
     LANDING,
     LOGIN,
     MIS_PELICULAS,
-    MOVIES,
+    MOVIES, MOVIES_NOW_PLAYING, MOVIES_POPULAR, MOVIES_TOP_RATED, MOVIES_UPCOMING,
     SIGNUP,
     USUARIO_,
     USUARIOS
 } from "./paths.js";
 import {LandingPage} from "../../main/components/landingPage/LandingPage.jsx";
-import {Movies} from "../../main/components/movies/Movies.jsx";
 import {Contact} from "../../main/components/contact/Contact.jsx";
 import App from "../../../App.jsx";
 import {NotFound} from "../../errors/NotFound.jsx";
@@ -26,6 +25,11 @@ import { GetUserReviews } from "./loaders/GetUserReviews.js";
 import {GetMoviesFromMovieDB} from "./loaders/GetMoviesFromMovieDB.js";
 import {GridMovies} from "../../../Movies/pages/GridMovies.jsx";
 
+const UPCOMING = '/movie/upcoming';
+const TOP_RATED = '/movie/top_rated';
+const NOW_PLAYING = '/movie/now_playing';
+const POPULAR = '/movie/popular';
+
 export const router = createBrowserRouter([
     {
         path: LANDING,
@@ -38,9 +42,34 @@ export const router = createBrowserRouter([
             },
             {
                 path: MOVIES,
-                loader: GetMoviesFromMovieDB,
-                element: <GridMovies />,
+                children: [
+                    {
+                        index: true,
+                        loader: () => redirect(MOVIES_POPULAR),
+                    },
+                    {
+                        path: MOVIES_POPULAR,
+                        loader: () => GetMoviesFromMovieDB(POPULAR, 'es-US', 1),
+                        element: <GridMovies section={POPULAR} />,
+                    },
+                    {
+                        path: MOVIES_TOP_RATED,
+                        loader: () => GetMoviesFromMovieDB(TOP_RATED, 'es-US', 1),
+                        element: <GridMovies section={TOP_RATED} />,
+                    },
+                    {
+                        path: MOVIES_NOW_PLAYING,
+                        loader: () => GetMoviesFromMovieDB(NOW_PLAYING, 'es-US', 1),
+                        element: <GridMovies section={NOW_PLAYING} />,
+                    },
+                    {
+                        path: MOVIES_UPCOMING,
+                        loader: () => GetMoviesFromMovieDB(UPCOMING, 'es-US', 1),
+                        element: <GridMovies section={UPCOMING} />,
+                    },
+                ]
             },
+
             {
                 path: CONTACT,
                 element: <Contact />,
@@ -69,8 +98,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        loader: GetUser,
-                        element: <MiCuenta />,
+                        loader: () => redirect(DASHBOARD),
                     },
                     {
                         path: DASHBOARD,

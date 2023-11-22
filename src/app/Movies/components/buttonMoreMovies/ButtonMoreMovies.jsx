@@ -13,16 +13,21 @@ export const ButtonMoreMovies = (props) => {
         if (page < totalPages) {
             setDisabledButton(true);
 
-            GetMoviesFromMovieDB(null, path, 'es-US', page + 1)
+            GetMoviesFromMovieDB(path, 'es-US', page + 1)
                 .then((res) => {
-                    setArrayMovies((prev) => [...prev, ...res.results]);
+                    setArrayMovies((prev) => {
+                        const combinedArray = [...prev, ...res.results];
+                        return Array.from(
+                            new Set(combinedArray.map(obj => obj.id)))
+                            .map(id => combinedArray.find(obj => obj.id === id));
+
+                    });
                     setDisabledButton(false);
                 })
                 .catch((err) => console.log(err));
 
             setPage(page + 1);
         }
-        console.log('click');
     }
 
     return (
