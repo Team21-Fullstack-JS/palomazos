@@ -10,7 +10,7 @@ export const SignUp = () => {
     const [severityTransitionMessage, setSeverityTransitionMessage] = useState('success');
 
     return (
-        <Container component="section" maxWidth="xs" className={'element__slideInFromLeft'}>
+        <Container component="section" maxWidth="xs">
             <CssBaseline />
             <Box
                 sx={{
@@ -19,6 +19,7 @@ export const SignUp = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}
+                className={'element__slideInFromLeft'}
             >
                 <Avatar sx={{
                     mt: 2,

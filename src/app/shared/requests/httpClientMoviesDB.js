@@ -6,10 +6,9 @@
  * page: pagina de la API que se desea traer
  * */
 
-export function getMovies(section, lang, page) {
+export function getMovies(path, lang, page) {
     const API_MOVIES_DB = 'https://api.themoviedb.org/3';
-
-    const URL = `${API_MOVIES_DB}${section}?language=${lang}&page=${page}`;
+    const URL = `${API_MOVIES_DB}${path}?language=${lang}&page=${page}`;
 
     const options = {
         method: 'GET',
@@ -21,7 +20,7 @@ export function getMovies(section, lang, page) {
 
     return fetch(URL, options)
         .then(response => response.json())
-        .then(data => data.results )
+        .then(data => data )
         .catch(error => console.log(error));
 }
 

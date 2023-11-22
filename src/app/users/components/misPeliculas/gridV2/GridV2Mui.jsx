@@ -22,11 +22,16 @@ const styles = {
       border-left: 1px solid rgba(255, 255, 255, 0.5);
       border-top: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 5px;
+    `,
+    message: css`
+      font-size: 1rem;
+      color: var(--link-color);
+      margin-top: 1rem;
     `
 }
 
 export const GridV2Mui = ( { array }) => {
-    return (
+    return array && array.length > 0 ? (
         <Box sx={{
             flexGrow: 1,
             // border: '1px solid blue'
@@ -58,6 +63,13 @@ export const GridV2Mui = ( { array }) => {
                     </Grid2>
                 )) }
             </Grid2>
+        </Box>
+    ) :
+    (
+        <Box sx={{
+            flexGrow: 1,
+        }}>
+            <p css={styles.message}>Aún no tienes películas con reseñas. </p>
         </Box>
     )
 }
