@@ -10,7 +10,7 @@ export const SignUp = () => {
     const [severityTransitionMessage, setSeverityTransitionMessage] = useState('success');
 
     return (
-        <Container component="section" maxWidth="xs">
+        <Container component="section" maxWidth="xs" className={'element__slideInFromLeft'}>
             <CssBaseline />
             <Box
                 sx={{
