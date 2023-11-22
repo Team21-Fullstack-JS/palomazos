@@ -7,7 +7,7 @@ import {ListMovies} from "../../../../users/components/listMovies/ListMovies";
 import {getMovies} from "../../../requests/httpClientMoviesDB";
 import bgImage from "/assets/movie-theater.jpg";
 
-
+import {IMG_URL} from "../../../requests/httpClientMoviesDB.js";
 
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
@@ -68,7 +68,7 @@ export const Movies = () => {
         }
     }, [arrayMovies, fetchMovies]);
 
-    return (
+    return arrayMovies ? (
         <Box sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -108,6 +108,10 @@ export const Movies = () => {
                 </div>
             </Box>
         </Box>
+    ) : (
+        <div>
+            Cargando...
+        </div>
     );
 }
 
