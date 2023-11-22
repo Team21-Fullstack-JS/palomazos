@@ -5,8 +5,7 @@ import {useLoaderData} from "react-router"
 import {BannerMovies} from "../movies/Banner/BannerMovies.jsx";
 import {ListMovies} from "../../../../users/components/listMovies/ListMovies";
 import {getMovies} from "../../../requests/httpClientMoviesDB";
-import {Loader} from "../loader/Loader.jsx";
-import bgImage from '/assets/movie-theater.jpg'
+import bgImage from "/assets/movie-theater.jpg";
 
 
 
@@ -23,7 +22,7 @@ const styles = {
 }
 
 export const Movies = () => {
-    const [arrayMovies, setArrayMovies] = usState(null);
+    const [arrayMovies, setArrayMovies] = useState(null);
 
     const fetchMovies = useCallback( async () => {
         const res = await Promise.all([
@@ -109,8 +108,6 @@ export const Movies = () => {
                 </div>
             </Box>
         </Box>
-    )  (
-        <Loader message={"Cargando películas"} />
     );
 }
 
