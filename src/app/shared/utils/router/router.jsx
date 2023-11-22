@@ -23,6 +23,8 @@ import {MiCuenta} from "../../../users/components/miCuenta/MiCuenta.jsx";
 import {MisPeliculas} from "../../../users/components/misPeliculas/MisPeliculas.jsx";
 import { GetUser } from "./loaders/GetUser.js";
 import { GetUserReviews } from "./loaders/GetUserReviews.js";
+import {GetMoviesFromMovieDB} from "./loaders/GetMoviesFromMovieDB.js";
+import {GridMovies} from "../../../Movies/pages/GridMovies.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -36,7 +38,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: MOVIES,
-                element: <Movies />,
+                loader: GetMoviesFromMovieDB,
+                element: <GridMovies />,
             },
             {
                 path: CONTACT,
