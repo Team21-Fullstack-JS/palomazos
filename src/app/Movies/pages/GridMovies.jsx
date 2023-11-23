@@ -1,14 +1,14 @@
 import {useLoaderData} from "react-router";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, IconButton, Tooltip} from "@mui/material";
+import { Box } from "@mui/material";
 import {MovieCard} from "../components/movieCard/MovieCard.jsx";
 import {css} from "@emotion/react";
 import {ButtonMoreMovies} from "../components/buttonMoreMovies/ButtonMoreMovies.jsx";
 import {Loader} from "../../users/components/loader/Loader.jsx";
-import {MoviesSection} from "../components/moviesSection/MoviesSection.jsx";
-import {Search} from "@mui/icons-material";
-import {NavLink} from "react-router-dom";
+import {useAuthContext} from "../../shared/utils/hooks/useAuthContext.js";
+import { useSearchParams } from "react-router-dom";
+import {getMovies} from "../../shared/requests/httpClientMoviesDB.js";
 
 const styles = {
     container: css`
@@ -26,11 +26,6 @@ const styles = {
     containerLoader: css`
         margin-top: 2rem;
     `,
-    containerIcons: css`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    `,
     titleSection: css`
         margin: 1rem 0 .1rem 0;
         font-size: 1.1rem;
@@ -44,47 +39,49 @@ export const GridMovies = ({ section }) => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(null);
     const [path] = useState(section);
-    const [arrayMovies, setArrayMovies] = useState(null);
+
+    const { arrayMovies, setArrayMovies } = useAuthContext();
+
+    const [searchParams] = useSearchParams();
 
     const title = section === '/movie/upcoming' ? 'Próximamente'
         : section === '/movie/top_rated' ? 'Más valorados'
-        : section === '/movie/now_playing' ? 'En cartelera' : 'Populares';
+        : section === '/movie/now_playing' ? 'En cartelera'
+        : section === '/movie/popular' ? 'Populares' : 'Resultados de la búsqueda';
 
     const data = useLoaderData();
 
+    const fetchSearchMovies = useCallback( async (stringSearch) => {
+        const path = `/search/movie?query=${stringSearch}&include_adult=false`;
+        const data = await getMovies(path, 'es-US', 1, true);
+        setArrayMovies(data.results);
+    }, [setArrayMovies])
+
+    useEffect(() => {
+        if (searchParams.get('movie')) {
+            fetchSearchMovies(searchParams.get('movie'));
+        }
+    }, [searchParams, fetchSearchMovies]);
+
     useEffect(() => {
         setArrayMovies(null);
-    }, [section]);
+    }, [section, setArrayMovies]);
 
     useEffect(() => {
         if (!arrayMovies && data) {
             setTotalPages(data.total_pages);
             setArrayMovies(data.results);
         }
-    }, [arrayMovies, data]);
+    }, [arrayMovies, data, setArrayMovies]);
 
     return arrayMovies ? (
         <>
             <Box sx={{
                 flexGrow: 1,
             }}>
-                <div css={styles.containerIcons}>
-                    <MoviesSection />
-                    <Tooltip title="Buscar pelicula">
-                        {/*<NavLink to={item.value}>*/}
-                            <IconButton >
-                                <Search color={"primary"} />
-                            </IconButton>
-                        {/*</NavLink>*/}
-                    </Tooltip>
-                </div>
                 <div css={styles.titleSection}>
                     <p>{title}</p>
                 </div>
-            </Box>
-            <Box sx={{
-                flexGrow: 1,
-            }}>
                 <Grid2
                     container
                     spacing={{ xs: 2, md: 3 }}

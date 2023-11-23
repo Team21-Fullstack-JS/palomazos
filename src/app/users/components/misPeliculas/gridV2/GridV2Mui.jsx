@@ -46,6 +46,7 @@ export const GridV2Mui = ( { array }) => {
                     height: 'auto',
                     marginTop: '0.1rem'
                 }}
+                className={'element__slideInFromRight'}
             >
                 { array.map((item) => (
                     <Grid2

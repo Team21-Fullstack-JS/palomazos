@@ -48,6 +48,8 @@ export function AuthContextProvider( { children }) {
         setIsAuthenticated(false);
     }, []);
 
+    const [arrayMovies, setArrayMovies] = useState(null);
+
     const value = useMemo( ()=> (
         {
             login,
@@ -60,7 +62,9 @@ export function AuthContextProvider( { children }) {
             selectedUserOption,
             setSelectedUserOption,
             selectedGeneralOption,
-            setSelectedGeneralOption
+            setSelectedGeneralOption,
+            arrayMovies,
+            setArrayMovies
         }
     ), [
         isAuthenticated,
@@ -73,7 +77,9 @@ export function AuthContextProvider( { children }) {
         selectedUserOption,
         setSelectedUserOption,
         selectedGeneralOption,
-        setSelectedGeneralOption
+        setSelectedGeneralOption,
+        arrayMovies,
+        setArrayMovies
     ]);
 
     return (
