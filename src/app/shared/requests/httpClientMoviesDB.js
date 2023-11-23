@@ -6,9 +6,10 @@
  * page: pagina de la API que se desea traer
  * */
 
-export function getMovies(path, lang, page) {
+export function getMovies(path, lang, page, isSearch = false) {
     const API_MOVIES_DB = 'https://api.themoviedb.org/3';
-    const URL = `${API_MOVIES_DB}${path}?language=${lang}&page=${page}`;
+    const URL = !isSearch ? `${API_MOVIES_DB}${path}?language=${lang}&page=${page}`
+        : `${API_MOVIES_DB}${path}&language=${lang}&page=${page}`;
 
     const options = {
         method: 'GET',

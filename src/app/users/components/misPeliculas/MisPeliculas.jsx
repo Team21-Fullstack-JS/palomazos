@@ -13,6 +13,12 @@ import bgImage from '/assets/movie-director.jpg'
 import {css} from "@emotion/react";
 
 import {IMG_URL} from "../../../shared/requests/httpClientMoviesDB.js";
+import {
+    MOVIES_NOW_PLAYING,
+    MOVIES_POPULAR,
+    MOVIES_TOP_RATED,
+    MOVIES_UPCOMING
+} from "../../../shared/utils/router/paths.js";
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
 const NOW_PLAYING = '/movie/now_playing';
@@ -102,19 +108,19 @@ export const MisPeliculas = () => {
                 }}
             >
                 <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'En cartelera'} section='NOW_PLAYING' array={arrayMovies[0]} />
+                    <ListMovies title={'En cartelera'} section={MOVIES_NOW_PLAYING} array={arrayMovies[0]} />
                 </div>
 
                 <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Populares'}  section='POPULAR' array={arrayMovies[1]} />
+                    <ListMovies title={'Populares'}  section={MOVIES_POPULAR} array={arrayMovies[1]} />
                 </div>
 
                 <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Mejor calificadas'} section='TOP_RATED' array={arrayMovies[2]} />
+                    <ListMovies title={'Mejor calificadas'} section={MOVIES_TOP_RATED} array={arrayMovies[2]} />
                 </div>
 
                 <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Próximos estrenos'} section='UPCOMING' array={arrayMovies[3]} />
+                    <ListMovies title={'Próximos estrenos'} section={MOVIES_UPCOMING} array={arrayMovies[3]} />
                 </div>
             </Box>
         </Box>

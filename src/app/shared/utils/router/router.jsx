@@ -5,7 +5,7 @@ import {
     LANDING,
     LOGIN,
     MIS_PELICULAS,
-    MOVIES, MOVIES_NOW_PLAYING, MOVIES_POPULAR, MOVIES_TOP_RATED, MOVIES_UPCOMING,
+    MOVIES, MOVIES_NOW_PLAYING, MOVIES_POPULAR, MOVIES_SEARCH, MOVIES_TOP_RATED, MOVIES_UPCOMING,
     SIGNUP,
     USUARIO_,
     USUARIOS
@@ -24,6 +24,7 @@ import { GetUser } from "./loaders/GetUser.js";
 import { GetUserReviews } from "./loaders/GetUserReviews.js";
 import {GetMoviesFromMovieDB} from "./loaders/GetMoviesFromMovieDB.js";
 import {GridMovies} from "../../../Movies/pages/GridMovies.jsx";
+import {MoviesLanding} from "../../../Movies/pages/MoviesLanding.jsx";
 
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
@@ -31,6 +32,7 @@ const NOW_PLAYING = '/movie/now_playing';
 const POPULAR = '/movie/popular';
 
 export const router = createBrowserRouter([
+
     {
         path: LANDING,
         element: <App />,
@@ -42,10 +44,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: MOVIES,
+                element: <MoviesLanding />,
                 children: [
                     {
                         index: true,
                         loader: () => redirect(MOVIES_POPULAR),
+                    },
+                    {
+                        path: MOVIES_SEARCH,
+                        exact: true,
+                        element: <GridMovies section='search' />,
                     },
                     {
                         path: MOVIES_POPULAR,

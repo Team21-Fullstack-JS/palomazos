@@ -14,10 +14,11 @@ const styles = {
     `
 }
 
-export const ListMovies = ({ title, array }) => {
+
+export const ListMovies = ({ title, array, section }) => {
 
     return array ? (
-        <Box  >
+        <Box className={'element__slideInFromRight'} >
             <Box
                 sx={{
                     display: 'flex',
@@ -26,7 +27,7 @@ export const ListMovies = ({ title, array }) => {
             }}
             >
                 <p css={styles.textSection}>{ title }</p>
-                <Link to={MOVIES}>
+                <Link to={`${section}`}>
                     <IconButton color={"primary"} size={"small"}>
                         <p css={styles.linkText}> Ver más </p>
                         <ArrowForward sx={{fontSize: {xs: 'medium'}}} />
