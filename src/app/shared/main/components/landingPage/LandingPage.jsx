@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 
+
 export const LandingPage = () => {
 
     return (
@@ -9,7 +10,7 @@ export const LandingPage = () => {
             fontSize: '1.5rem',
             paddingTop: '2rem'
         }}>
-            Esta es la Landing Page!
+            Bienvenidos a Palomazos 
         </Box>
     )
 }
