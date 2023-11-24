@@ -48,7 +48,7 @@ export const MovieCard = ({ item }) => {
                     </Avatar>
                 }
                 title={ title }
-                subheader={new Date(release_date).getFullYear()}
+                subheader={release_date ? new Date(release_date).getFullYear() : 'Sin fecha'}
             />
         </Card>
     )

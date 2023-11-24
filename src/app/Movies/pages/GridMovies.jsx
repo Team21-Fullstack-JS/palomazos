@@ -1,13 +1,13 @@
 import {useLoaderData} from "react-router";
 import {useCallback, useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import {MovieCard} from "../components/movieCard/MovieCard.jsx";
 import {css} from "@emotion/react";
 import {ButtonMoreMovies} from "../components/buttonMoreMovies/ButtonMoreMovies.jsx";
 import {Loader} from "../../users/components/loader/Loader.jsx";
 import {useAuthContext} from "../../shared/utils/hooks/useAuthContext.js";
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {getMovies} from "../../shared/requests/httpClientMoviesDB.js";
 
 const styles = {
@@ -38,7 +38,8 @@ export const GridMovies = ({ section }) => {
 
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(null);
-    const [path] = useState(section);
+    const [path, setPath] = useState(section);
+    const [stringSearch, setStringSearch] = useState(null);
 
     const { arrayMovies, setArrayMovies } = useAuthContext();
 
@@ -51,20 +52,28 @@ export const GridMovies = ({ section }) => {
 
     const data = useLoaderData();
 
-    const fetchSearchMovies = useCallback( async (stringSearch) => {
+    const fetchSearchMovies = useCallback( async (stringSearch, page) => {
         const path = `/search/movie?query=${stringSearch}&include_adult=false`;
-        const data = await getMovies(path, 'es-US', 1, true);
-        setArrayMovies(data.results);
-    }, [setArrayMovies])
+        return await getMovies(path, 'es-US', page, true);
+    }, [])
 
-    useEffect(() => {
+    useEffect( () => {
         if (searchParams.get('movie')) {
-            fetchSearchMovies(searchParams.get('movie'));
+            setStringSearch(searchParams.get('movie'));
+            setPage(1);
+            fetchSearchMovies(searchParams.get('movie'), 1)
+                .then((res) => {
+                    setTotalPages(res.total_pages);
+                    setArrayMovies(res.results);
+                })
+                .catch((err) => console.log(err));
         }
-    }, [searchParams, fetchSearchMovies]);
+    }, [searchParams, fetchSearchMovies, setArrayMovies]);
 
     useEffect(() => {
         setArrayMovies(null);
+        setPath(section);
+        setPage(1);
     }, [section, setArrayMovies]);
 
     useEffect(() => {
@@ -111,6 +120,8 @@ export const GridMovies = ({ section }) => {
                         setPage={setPage}
                         totalPages={totalPages}
                         path={path}
+                        fetchSearchMovies={fetchSearchMovies}
+                        stringSearch={stringSearch}
                     />
                 </div>
             </Box>
