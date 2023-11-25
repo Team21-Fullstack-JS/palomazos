@@ -8,7 +8,8 @@ export const theme = createTheme({
             sm: 600, // tablets
             md: 900, // small laptop
             lg: 1024, // desktop
-            xl: 1536 // large screens
+            xl: 1536, // large screens
+            xxl: 1600, // extra large screens
         }
     }
 });

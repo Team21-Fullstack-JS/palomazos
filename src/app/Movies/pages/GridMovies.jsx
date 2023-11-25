@@ -1,14 +1,15 @@
 import {useLoaderData} from "react-router";
 import {useCallback, useEffect, useState} from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {MovieCard} from "../components/movieCard/MovieCard.jsx";
 import {css} from "@emotion/react";
 import {ButtonMoreMovies} from "../components/buttonMoreMovies/ButtonMoreMovies.jsx";
 import {Loader} from "../../users/components/loader/Loader.jsx";
 import {useAuthContext} from "../../shared/utils/hooks/useAuthContext.js";
-import {useSearchParams} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import {getMovies} from "../../shared/requests/httpClientMoviesDB.js";
+import {MOVIES} from "../../shared/utils/router/paths.js";
 
 const styles = {
     container: css`
@@ -84,10 +85,21 @@ export const GridMovies = ({ section }) => {
     }, [arrayMovies, data, setArrayMovies]);
 
     return arrayMovies ? (
-        <>
-            <Box sx={{
-                flexGrow: 1,
-            }}>
+        <Container
+            disableGutters
+            component="div"
+            maxWidth="100%"
+            sx={{
+                display: 'flex',
+                justifyContent: 'center'
+            }}
+        >
+            <Box
+                maxWidth="lg"
+                sx={{
+                    width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                }}
+            >
                 <div css={styles.titleSection}>
                     <p>{title}</p>
                 </div>
@@ -108,7 +120,9 @@ export const GridMovies = ({ section }) => {
                             key={item.id}
                         >
                             <div css={styles.container} className={'element__slideInFromLeft'}>
-                                <MovieCard item={item} />
+                                <NavLink to={`${MOVIES}/id/${item.id}`}>
+                                    <MovieCard item={item} />
+                                </NavLink>
                             </div>
                         </Grid2>
                     )) }
@@ -125,7 +139,7 @@ export const GridMovies = ({ section }) => {
                     />
                 </div>
             </Box>
-        </>
+        </Container>
     ) : (
         <div css={styles.containerLoader}>
             <Loader message={"Cargando las peliculas"} />
