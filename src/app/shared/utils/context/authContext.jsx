@@ -12,6 +12,8 @@ export function AuthContextProvider( { children }) {
 
     let location = useLocation();
 
+    const [movieFull, setMovieFull] = useState(null);
+
     const [selectedUserOption, setSelectedUserOption] = useState(null);
     const [selectedGeneralOption, setSelectedGeneralOption] = useState(
         () => location.pathname === BASE ? 0 :
@@ -64,7 +66,9 @@ export function AuthContextProvider( { children }) {
             selectedGeneralOption,
             setSelectedGeneralOption,
             arrayMovies,
-            setArrayMovies
+            setArrayMovies,
+            movieFull,
+            setMovieFull
         }
     ), [
         isAuthenticated,
@@ -79,7 +83,9 @@ export function AuthContextProvider( { children }) {
         selectedGeneralOption,
         setSelectedGeneralOption,
         arrayMovies,
-        setArrayMovies
+        setArrayMovies,
+        movieFull,
+        setMovieFull
     ]);
 
     return (

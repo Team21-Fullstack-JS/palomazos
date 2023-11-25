@@ -7,8 +7,9 @@ import {css} from "@emotion/react";
 import {ButtonMoreMovies} from "../components/buttonMoreMovies/ButtonMoreMovies.jsx";
 import {Loader} from "../../users/components/loader/Loader.jsx";
 import {useAuthContext} from "../../shared/utils/hooks/useAuthContext.js";
-import {useSearchParams} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import {getMovies} from "../../shared/requests/httpClientMoviesDB.js";
+import {MOVIES} from "../../shared/utils/router/paths.js";
 
 const styles = {
     container: css`
@@ -108,7 +109,9 @@ export const GridMovies = ({ section }) => {
                             key={item.id}
                         >
                             <div css={styles.container} className={'element__slideInFromLeft'}>
-                                <MovieCard item={item} />
+                                <NavLink to={`${MOVIES}/id/${item.id}`}>
+                                    <MovieCard item={item} />
+                                </NavLink>
                             </div>
                         </Grid2>
                     )) }
