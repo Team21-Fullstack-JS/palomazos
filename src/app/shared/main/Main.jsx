@@ -8,12 +8,9 @@ export const Main = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container
+                disableGutters
                 component="main"
-                // maxWidth="lg"
-                sx={{
-                    // maxWidth: {xs: "false", md: "lg"},
-                    // border: '1px solid violet',
-                }}
+                maxWidth="100%"
             >
                 <main className={styles.main}>
                     <Outlet />

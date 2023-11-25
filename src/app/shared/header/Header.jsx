@@ -11,8 +11,26 @@ import {NavMenuSidebar} from "./components/nav_menu_sidebar/NavMenuSidebar.jsx";
 export const Header = () => {
     return <ThemeProvider theme={theme}>
         <header className={styles.header__container}>
-            <Container component="header" maxWidth="lg" >
-                <div className={styles.header}>
+
+            <Container
+                disableGutters
+                component="div"
+                maxWidth="100%"
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    // width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                    // border: { xs: '1px solid red', sm: '1px solid blue', lg: '1px solid pink', xl: '1px solid yellow' }
+                }}
+            >
+                <Box
+                    className={styles.header}
+                    maxWidth="lg"
+                    sx={{
+                        width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                        // border: { xs: '1px solid violet', sm: '1px solid yellow', lg: '1px solid purple' }
+                    }}
+                >
                     <Box className={styles.header__container_navMenuSidebar} sx={{ display: { xxs: 'flex', sm: 'none' }}} >
                         <NavMenuSidebar />
                     </Box>
@@ -32,7 +50,7 @@ export const Header = () => {
                     <div className={styles.header__container_navUser}>
                         <NavUser />
                     </div>
-                </div>
+                </Box>
             </Container>
         </header>
     </ThemeProvider>
