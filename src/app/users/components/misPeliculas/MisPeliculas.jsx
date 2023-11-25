@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
 import {useLoaderData} from "react-router";
 
-import {Box} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import { GridV2Mui } from "./gridV2/GridV2Mui.jsx";
 
 import {BannerUsers} from "../banner/BannerUsers.jsx";
@@ -84,45 +84,60 @@ export const MisPeliculas = () => {
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            // alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.3rem',
-            width: '100%',
-            // border: '1px solid red'
+            fontSize: '1.3rem'
         }}>
             <BannerUsers bgImage={bgImage} />
-            <Box
+            <Container
+                disableGutters
+                component="div"
+                maxWidth="100%"
                 sx={{
-                    // border: '1px solid blue',
-                    width: '100%',
-                    marginTop: '3rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    // border: '1px solid blue'
                 }}
             >
-                Mis Peliculas
-            </Box>
-            <GridV2Mui array={data.data.reviews} />
-            <Box
-                sx={{
-                    width: '100%',
-                    marginTop: '3rem'
-                }}
-            >
-                <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'En cartelera'} section={MOVIES_NOW_PLAYING} array={arrayMovies[0]} />
-                </div>
+                <Box
+                    maxWidth="lg"
+                    sx={{
+                        width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: '100%',
+                            marginTop: '1.5rem',
+                        }}
+                    >
+                        Mis Peliculas
+                    </Box>
+                    <GridV2Mui array={data.data.reviews} />
+                    <Box
+                        sx={{
+                            width: '100%',
+                            marginTop: '3rem'
+                        }}
+                    >
+                        <div css={styles.containerSectionMovies}>
+                            <ListMovies title={'En cartelera'} section={MOVIES_NOW_PLAYING} array={arrayMovies[0]} />
+                        </div>
 
-                <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Populares'}  section={MOVIES_POPULAR} array={arrayMovies[1]} />
-                </div>
+                        <div css={styles.containerSectionMovies}>
+                            <ListMovies title={'Populares'}  section={MOVIES_POPULAR} array={arrayMovies[1]} />
+                        </div>
 
-                <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Mejor calificadas'} section={MOVIES_TOP_RATED} array={arrayMovies[2]} />
-                </div>
+                        <div css={styles.containerSectionMovies}>
+                            <ListMovies title={'Mejor calificadas'} section={MOVIES_TOP_RATED} array={arrayMovies[2]} />
+                        </div>
 
-                <div css={styles.containerSectionMovies}>
-                    <ListMovies title={'Próximos estrenos'} section={MOVIES_UPCOMING} array={arrayMovies[3]} />
-                </div>
-            </Box>
+                        <div css={styles.containerSectionMovies}>
+                            <ListMovies title={'Próximos estrenos'} section={MOVIES_UPCOMING} array={arrayMovies[3]} />
+                        </div>
+                    </Box>
+                </Box>
+            </Container>
         </Box>
     ) : (
         <div css={styles.containerLoader}>
