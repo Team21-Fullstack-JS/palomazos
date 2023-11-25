@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
+import {useEffect} from "react";
+import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
@@ -25,8 +27,14 @@ export const MovieCard = ({ item }) => {
 
     const { title, release_date, poster_path, vote_average } = item;
 
+    const { setMovieFull } = useAuthContext();
+
+    const handleClick = () => {
+        setMovieFull(item);
+    }
+
     return (
-        <Card sx={{ maxWidth: 400,  cursor: 'pointer'}} >
+        <Card sx={{ maxWidth: 400,  cursor: 'pointer'}}  onClick={handleClick}>
             <CardMedia
                 component="img"
                 sx={{
