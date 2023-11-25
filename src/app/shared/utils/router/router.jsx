@@ -5,7 +5,7 @@ import {
     LANDING,
     LOGIN,
     MIS_PELICULAS,
-    MOVIES, MOVIES_NOW_PLAYING, MOVIES_POPULAR, MOVIES_SEARCH, MOVIES_TOP_RATED, MOVIES_UPCOMING,
+    MOVIES, MOVIES_BY_ID, MOVIES_NOW_PLAYING, MOVIES_POPULAR, MOVIES_SEARCH, MOVIES_TOP_RATED, MOVIES_UPCOMING,
     SIGNUP,
     USUARIO_,
     USUARIOS
@@ -25,6 +25,7 @@ import { GetUserReviews } from "./loaders/GetUserReviews.js";
 import {GetMoviesFromMovieDB} from "./loaders/GetMoviesFromMovieDB.js";
 import {GridMovies} from "../../../Movies/pages/GridMovies.jsx";
 import {MoviesLanding} from "../../../Movies/pages/MoviesLanding.jsx";
+import {MovieCardFull} from "../../../Movies/pages/MovieCardFull.jsx";
 
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
@@ -76,8 +77,11 @@ export const router = createBrowserRouter([
                         element: <GridMovies section={UPCOMING} />,
                     },
                 ]
+            },{
+                path: MOVIES_BY_ID,
+                exact: true,
+                element: <MovieCardFull />,
             },
-
             {
                 path: CONTACT,
                 element: <Contact />,
