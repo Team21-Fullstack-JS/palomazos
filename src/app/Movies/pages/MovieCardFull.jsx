@@ -1,11 +1,12 @@
 import {css} from "@emotion/react";
 import {useAuthContext} from "../../shared/utils/hooks/useAuthContext.js";
+import {MovieData} from "../components/backgroundImage/MovieData.jsx";
+import {Box, Typography} from "@mui/material";
+import {ReviewLanding} from "../../reviews/components/reviewLanding/ReviewLanding.jsx";
 
 const styles = {
     container: css`
       width: 100%;
-      height: 100vw;
-      border: 1px solid red;
     `,
 };
 
@@ -14,6 +15,11 @@ export const MovieCardFull = () => {
     const { movieFull } = useAuthContext();
 
     return (
-        <section css={styles.container}>Datos full de la movie: {movieFull.title}</section>
+        <Box css={styles.container}>
+            <MovieData movie={movieFull}/>
+            <Box>
+                <ReviewLanding />
+            </Box>
+        </Box>
     )
 }
