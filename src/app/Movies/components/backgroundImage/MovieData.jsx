@@ -11,7 +11,7 @@ export const MovieData = ({ movie } ) => {
         <Box
             sx={{
                 width: '100%',
-                height: { xs: 300, sm: 300, md: 350, lg: 450, xl: 350, xxl: 350 },
+                height: { xs: 340, sm: 360, md: 380, lg: 410, xl: 420, xxl: 430 },
                 backgroundImage: `url(${IMG_URL_MULTIFACES+backdrop_path})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
