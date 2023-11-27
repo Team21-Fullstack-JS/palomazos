@@ -39,7 +39,8 @@ export const ReviewLanding = () => {
                     textColor="secondary"
                     indicatorColor="secondary"
                 >
-                    <Tab label="Palomazos" />
+                    <Tab label="Palomazo" />
+                    <Tab label="Críticas" />
                     <Tab label="Trailers" />
                 </Tabs>
             </Box>
@@ -52,10 +53,21 @@ export const ReviewLanding = () => {
                             overflowY: 'scroll'
                         }}
                     >
-                        <ReviewGrid />
+                        Mi review
                     </Box>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
+                    <Box
+                        sx={{
+                            height: { xs: 200, sm: 210, md: 220, lg: 230, xl: 240, xxl: 250 },
+                            overflow: 'none',
+                            overflowY: 'scroll'
+                        }}
+                    >
+                        <ReviewGrid />
+                    </Box>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
                     <Box
                         sx={{
                             height: { xs: 200, sm: 210, md: 220, lg: 230, xl: 240, xxl: 250 },

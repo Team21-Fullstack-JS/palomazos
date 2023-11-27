@@ -6,25 +6,31 @@ import { UpdateUserReviews } from "../../utils/router/loaders/updateUserReviews.
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { Clear, Done } from "@mui/icons-material";
 
-export const ToggleCheckButton = ( { isCheck, idReview }) => {
+export const ToggleCheckButton = ( { isCheck, idReview, isDisabled }) => {
 
     const [alignment, setAlignment] = useState(isCheck ? 'check' : 'uncheck');
     const debouncedAlignment = useDebounce(alignment, 1000);
+    const [isDisabledToggleButton] = useState(isDisabled);
+    const [isFirstTime, setIsFirstTime] = useState(true);
 
     const handleChange = (event, newAlignment) => {
+        setIsFirstTime(false);
         setAlignment(newAlignment);
     };
 
     useEffect(() => {
 
-        if (debouncedAlignment === 'check' && isCheck || debouncedAlignment === 'uncheck' && !isCheck) return;
+        if (!isDisabledToggleButton) {
 
-        const fetchCheck = async () => {
-            await UpdateUserReviews(idReview, {isCheck: debouncedAlignment === 'check'});
+            if (!isFirstTime) {
+                const fetchCheck = async () => {
+                    await UpdateUserReviews(idReview, {isCheck: debouncedAlignment === 'check'});
+                }
+                fetchCheck();
+            }
         }
-        fetchCheck();
 
-    }, [debouncedAlignment, idReview, isCheck]);
+    }, [debouncedAlignment, idReview, isCheck, isDisabledToggleButton, isFirstTime]);
 
     return (
         <ToggleButtonGroup
@@ -34,6 +40,7 @@ export const ToggleCheckButton = ( { isCheck, idReview }) => {
             onChange={handleChange}
             aria-label="Platform"
             size="small"
+            disabled={isDisabledToggleButton}
         >
             <ToggleButton value="check"><Done/></ToggleButton>
             <ToggleButton value="uncheck"><Clear/></ToggleButton>

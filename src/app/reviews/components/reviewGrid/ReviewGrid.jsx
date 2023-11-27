@@ -1,9 +1,10 @@
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 import {useCallback, useEffect, useState} from "react";
 import {GetMoviesWithReviews} from "../../../shared/utils/router/loaders/GetMoviesWithReviews.js";
 import {Loader} from "../../../users/components/loader/Loader.jsx";
 import {css} from "@emotion/react";
+import {ReviewCard} from "../reviewCard/ReviewCard.jsx";
 
 const styles = {
     containerLoader: css`
@@ -47,7 +48,7 @@ export const ReviewGrid = () => {
     return notReviewMsg ?
     (
         <Box>
-            <p>{notReviewMsg}</p>
+            <Typography>{notReviewMsg}</Typography>
         </Box>
     ) : reviews.length > 0 ?
     (
@@ -56,15 +57,15 @@ export const ReviewGrid = () => {
                 reviews.map( (review) => {
                     return (
                         <Box key={review.id}>
-                            <p>Rate: {review.rate}</p>
+                            <ReviewCard review={review} />
                         </Box>
                     )
                 })
             }
         </Box>
     ) : (
-        <div css={styles.containerLoader}>
+        <Box css={styles.containerLoader}>
             <Loader message={"Cargando reviews..."} />
-        </div>
+        </Box>
     );
 }
