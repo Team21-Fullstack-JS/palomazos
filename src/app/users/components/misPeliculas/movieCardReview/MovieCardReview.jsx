@@ -44,7 +44,7 @@ export const MovieCardReview = ({ item }) => {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <ToggleCheckButton isCheck={isCheck} idReview={id} />
+                <ToggleCheckButton isCheck={isCheck} idReview={id} isDisabled={false} />
             </CardActions>
         </Card>
     )
