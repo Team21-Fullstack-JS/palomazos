@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import logoImage from '../../../../../../public/logo.svg';
+import logoImage from '/logo.svg';
 
 const styles = {
     container: css`
