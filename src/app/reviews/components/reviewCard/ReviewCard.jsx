@@ -6,18 +6,18 @@ import {
     CardActions,
     CardContent,
     CardHeader,
-    IconButton,
     Typography
 } from "@mui/material";
-import {Favorite} from "@mui/icons-material";
 import { red } from '@mui/material/colors';
 import {ToggleCheckButton} from "../../../shared/components/toggleCheckButton/ToggleCheckButton.jsx";
 import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
+import {StarGrid} from "../starGrid/StarGrid.jsx";
 
 export const ReviewCard = ({ review }) => {
     const [message] = useState("No hay comentarios para esta review");
 
     const { id: reviewId, movie_id, rate, isCheck, updatedAt, user, comment } = review;
+    console.log(review);
 
     const { id: userId, firstName, lastName } = user;
 
@@ -49,9 +49,10 @@ export const ReviewCard = ({ review }) => {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <IconButton aria-label="add to favorites">
-                        <Favorite />
-                    </IconButton>
+                    <StarGrid
+                        isDisabled={true}
+                        rate={rate}
+                    />
                     <ToggleCheckButton
                         isCheck={isCheck}
                         idReview={reviewId}
