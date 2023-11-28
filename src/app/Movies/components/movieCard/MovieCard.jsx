@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
-import {useEffect} from "react";
 import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'

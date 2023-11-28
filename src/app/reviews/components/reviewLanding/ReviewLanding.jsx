@@ -2,6 +2,7 @@ import {Box, Container, Tab, Tabs} from "@mui/material";
 import {useState} from "react";
 import {ReviewGrid} from "../reviewGrid/ReviewGrid.jsx";
 import {TrailersGrid} from "../trailersGrid/TrailersGrid.jsx";
+import {css} from "@emotion/react";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -33,16 +34,16 @@ export const ReviewLanding = () => {
 
     return (
         <Container disableGutters>
-            <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%', marginTop: { lg: '.8rem'} }}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     textColor="secondary"
                     indicatorColor="secondary"
                 >
-                    <Tab label="Palomazo" />
-                    <Tab label="Críticas" />
-                    <Tab label="Trailers" />
+                    <Tab label="Palomazo" sx={{ fontSize: {sm: '1rem', lg: '1.1rem'} }} />
+                    <Tab label="Críticas" sx={{ fontSize: {sm: '1rem', lg: '1.1rem'} }} />
+                    <Tab label="Trailers" sx={{ fontSize: {sm: '1rem', lg: '1.1rem'} }} />
                 </Tabs>
             </Box>
             <Container disableGutters={true}>
@@ -71,10 +72,11 @@ function ContainerTabs({ children }) {
     return (
         <Box
             sx={{
-                minHeight: 80,
-                height: { xs: 'auto', sm: 320, md: 330, lg: 340, xl: 350, xxl: 370 },
+                minHeight: 150,
+                height: { xs: 320, sm: 350, md: 380, lg: 420, xl: 450, xxl: 470 },
                 overflow: 'none',
                 overflowY: 'scroll',
+                marginTop: {lg: '0.3rem'},
             }}
         >
             {children}

@@ -4,10 +4,10 @@ const styles = {
     container: css`
       //border: 1px solid red;
       height: var(--height-header);
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      padding-left: 0.5rem;
+      padding-left: 1.5rem;
     `,
     title: css`
       font-weight: 400;
