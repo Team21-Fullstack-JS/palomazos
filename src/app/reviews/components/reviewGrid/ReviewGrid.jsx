@@ -70,8 +70,8 @@ export const ReviewGrid = () => {
                     return (
                         <Grid2
                             xs={12}
-                            sm={4}
-                            md={3}
+                            sm={6}
+                            md={4}
                             key={review.id}
                         >
                             <ReviewCard review={review} />

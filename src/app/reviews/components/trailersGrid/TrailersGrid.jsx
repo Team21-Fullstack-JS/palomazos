@@ -24,7 +24,7 @@ export const TrailersGrid = () => {
 
     const fetchTrailersOfMovie = useCallback( async () => {
         const url = `/movie/${id}/videos`;
-        return await getTrailers(url, 'es-US');
+        return await getTrailers(url, 'es-MX');
     }, [id])
 
     useEffect(() => {
@@ -59,7 +59,7 @@ export const TrailersGrid = () => {
             sx={{
                 width: 'auto',
                 height: 'auto',
-                marginTop: '0.1rem'
+                // marginTop: '0.1rem'
             }}
         >
             {
@@ -67,8 +67,8 @@ export const TrailersGrid = () => {
                     return (
                         <Grid2
                             xs={12}
-                            sm={4}
-                            md={3}
+                            sm={6}
+                            md={6}
                             key={trailer.id}
                         >
                             <TrailerCard trailer={trailer} />

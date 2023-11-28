@@ -11,11 +11,12 @@ const styles = {
 };
 
 export const MovieCardFull = () => {
+    window. scrollTo(0, 0);
 
     const { movieFull } = useAuthContext();
 
     return (
-        <Box css={styles.container}>
+        <Box id="top"  css={styles.container}>
             <MovieData movie={movieFull}/>
             <Box>
                 <ReviewLanding />

@@ -11,7 +11,8 @@ const styles = {
       //border: 1px solid green;
     `,
     logo: css`
-      height: calc( var(--height-header) - 50px);
+      //height: calc( var(--height-header) - 50px);
+      height: 100%;
     `
 }
 
