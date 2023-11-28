@@ -6,10 +6,28 @@
  * page: pagina de la API que se desea traer
  * */
 
+const API_MOVIES_DB = 'https://api.themoviedb.org/3';
+
 export function getMovies(path, lang, page, isSearch = false) {
-    const API_MOVIES_DB = 'https://api.themoviedb.org/3';
     const URL = !isSearch ? `${API_MOVIES_DB}${path}?language=${lang}&page=${page}`
         : `${API_MOVIES_DB}${path}&language=${lang}&page=${page}`;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_API_MOVIES_DB_TOKEN}`
+        }
+    };
+
+    return fetch(URL, options)
+        .then(response => response.json())
+        .then(data => data )
+        .catch(error => console.log(error));
+}
+
+export function getTrailers(path, lang) {
+    const URL = `${API_MOVIES_DB}${path}?language=${lang}`;
 
     const options = {
         method: 'GET',

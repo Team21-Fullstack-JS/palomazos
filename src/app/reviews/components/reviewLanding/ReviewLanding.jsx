@@ -1,12 +1,13 @@
-import {Box, Container, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Container, Tab, Tabs} from "@mui/material";
 import {useState} from "react";
 import {ReviewGrid} from "../reviewGrid/ReviewGrid.jsx";
+import {TrailersGrid} from "../trailersGrid/TrailersGrid.jsx";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
-        <div
+        <Box
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -14,11 +15,11 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                <Box sx={{ p: 1 }}>
+                    {children}
                 </Box>
             )}
-        </div>
+        </Box>
     );
 }
 
@@ -31,7 +32,7 @@ export const ReviewLanding = () => {
     };
 
     return (
-        <Container>
+        <Container disableGutters>
             <Box sx={{ width: '100%' }}>
                 <Tabs
                     value={value}
@@ -44,42 +45,39 @@ export const ReviewLanding = () => {
                     <Tab label="Trailers" />
                 </Tabs>
             </Box>
-            <Box>
+            <Container disableGutters={true}>
                 <TabPanel value={value} index={0}>
-                    <Box
-                        sx={{
-                            height: { xs: 200, sm: 210, md: 220, lg: 230, xl: 240, xxl: 250 },
-                            overflow: 'none',
-                            overflowY: 'scroll'
-                        }}
-                    >
-                        Mi review
-                    </Box>
+                    <ContainerTabs>
+                        Mi review personal
+                    </ContainerTabs>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <Box
-                        sx={{
-                            height: { xs: 200, sm: 210, md: 220, lg: 230, xl: 240, xxl: 250 },
-                            overflow: 'none',
-                            overflowY: 'scroll'
-                        }}
-                    >
+                    <ContainerTabs>
                         <ReviewGrid />
-                    </Box>
+                    </ContainerTabs>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <Box
-                        sx={{
-                            height: { xs: 200, sm: 210, md: 220, lg: 230, xl: 240, xxl: 250 },
-                            overflow: 'none',
-                            overflowY: 'scroll'
-                        }}
-                    >
-                        Videos
-                    </Box>
+                    <ContainerTabs>
+                        <TrailersGrid />
+                    </ContainerTabs>
                 </TabPanel>
-            </Box>
+            </Container>
 
         </Container>
+    )
+}
+
+function ContainerTabs({ children }) {
+    return (
+        <Box
+            sx={{
+                minHeight: 80,
+                height: { xs: 'auto', sm: 320, md: 330, lg: 340, xl: 350, xxl: 370 },
+                overflow: 'none',
+                overflowY: 'scroll',
+            }}
+        >
+            {children}
+        </Box>
     )
 }

@@ -91,7 +91,8 @@ export const GridMovies = ({ section }) => {
             maxWidth="100%"
             sx={{
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                padding: '.5rem',
             }}
         >
             <Box
