@@ -73,10 +73,11 @@ function ContainerTabs({ children }) {
         <Box
             sx={{
                 minHeight: 150,
-                height: { xs: 410, sm: 420, md: 430, lg: 440, xl: 450, xxl: 470 },
+                height: 'auto', //{ xs: 'auto', sm: 'auto', md: 435, lg: 450, xl: 450, xxl: 450 },
                 overflow: 'none',
                 overflowY: 'auto',
                 marginTop: {lg: '0.3rem'},
+                padding: '.3rem'
             }}
         >
             {children}
