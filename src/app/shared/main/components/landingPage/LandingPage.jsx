@@ -1,4 +1,6 @@
 import {Box, Typography, Button} from "@mui/material";
+import {NavLink} from "react-router-dom";
+import {SIGNUP, USUARIOS} from "../../../utils/router/paths.js";
 
 
 
@@ -48,13 +50,17 @@ export const LandingPage = () => {
             justifyContent: 'center',
             paddingBottom: '2rem'
         }}>
-        <Button 
-            onClick={handleClick}     
-            variant="contained" 
-            color="primary"
-            >
-                Comenzar
-            </Button>
+            <NavLink to={USUARIOS + '/' + SIGNUP}>
+                {/*<p style={{ color: "white"}}>Signup</p>*/}
+                <Button
+                    // onClick={handleClick}
+                    variant="contained"
+                    color="primary"
+                >
+                    Comenzar
+                </Button>
+            </NavLink>
+
         </Box>
       </div>
     )    

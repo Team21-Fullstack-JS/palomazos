@@ -24,10 +24,11 @@ export const Icon = ( { handleClick }) => {
     return <Box
         sx={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: {xs: 'flex-end', sm: 'center'},
             alignItems: 'center',
             textAlign: 'center',
             width: '100%',
+            marginRight: {xs: '1.5rem', sm: '0'},
         }}>
         <Tooltip title="Menu de usuario">
             <IconButton

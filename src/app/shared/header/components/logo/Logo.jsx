@@ -8,6 +8,7 @@ const styles = {
       display: flex;
       justify-content: center;
       align-items: center;
+      //height: 100%;
       //border: 1px solid green;
     `,
     logo: css`

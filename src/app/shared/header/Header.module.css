@@ -6,7 +6,8 @@
 .header {
     display: grid;
     grid-template:
-    "navMenuSidebar logo name navUser" var(--height-header) / 60px 50px 1fr 70px;
+    "navMenuSidebar logo navUser" var(--height-header) / .45fr .45fr 1fr;
+    /*"navMenuSidebar logo name navUser" var(--height-header) / 60px 50px 1fr 70px;*/
 }
 
 .header__container_navMenuSidebar {
@@ -37,6 +38,7 @@
 .header__container_navUser {
     grid-area: navUser;
     display: flex;
+    justify-content: flex-end;
     /*border: 1px solid deeppink;*/
 }
 
@@ -44,7 +46,8 @@
 @media screen and (min-width: 600px) {
     .header {
         grid-template:
-        "logo name navMenu navUser" var(--height-header) / 50px .4fr 1fr 70px;
+        "logo navMenu navUser" var(--height-header) / .4fr 1fr 70px;
+        /*"logo name navMenu navUser" var(--height-header) / 50px .4fr 1fr 70px;*/
     }
 }
 
@@ -52,6 +55,7 @@
 @media screen and (min-width: 1024px) {
     .header {
         grid-template:
-        "logo name navMenu navUser" var(--height-header) / 50px .3fr 1fr 70px;
+        "logo navMenu navUser" var(--height-header) / .5fr 1fr 70px;
+        /*"logo name navMenu navUser" var(--height-header) / 50px .3fr 1fr 70px;*/
     }
 }
