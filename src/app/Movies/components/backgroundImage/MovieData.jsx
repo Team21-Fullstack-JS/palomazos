@@ -57,6 +57,7 @@ export const MovieData = ({ movie } ) => {
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
+                        borderRadius: {lg: '10px'},
                     }}
                     css={styles.container}
                     className={'element__slideInFromLeft'}
@@ -75,11 +76,11 @@ export const MovieData = ({ movie } ) => {
                     position: {lg: 'relative'},
                     top: {lg: '50%'},
                     transform: {lg: 'translateY(-50%)'},
-                    borderRadius: {lg: '5px'},
+                    borderRadius: {lg: '10px'},
                     backdropFilter: {lg: 'blur(3px)'},
                     overflow: {lg: 'hidden'},
-                    overflowY: {lg: 'scroll'},
-                    marginRight: {lg: '1rem'},
+                    overflowY: {lg: 'auto'},
+                    paddingRight: {lg: '1rem'},
                 }}
                 className={'element__slideInFromRight'}
             >

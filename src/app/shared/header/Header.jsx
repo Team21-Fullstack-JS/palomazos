@@ -19,15 +19,14 @@ export const Header = () => {
                 sx={{
                     display: 'flex',
                     justifyContent: 'center',
-                    // width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
-                    // border: { xs: '1px solid red', sm: '1px solid blue', lg: '1px solid pink', xl: '1px solid yellow' }
+                    // border: '1px solid red'
                 }}
             >
                 <Box
                     className={styles.header}
                     maxWidth="lg"
                     sx={{
-                        width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                        width: { xs: '100%', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
                         // border: { xs: '1px solid violet', sm: '1px solid yellow', lg: '1px solid purple' }
                     }}
                 >
@@ -39,9 +38,9 @@ export const Header = () => {
                         <Logo />
                     </div>
 
-                    <div className={styles.header__container_name}>
+                    {/*<div className={styles.header__container_name}>
                         <Name />
-                    </div>
+                    </div>*/}
 
                     <Box className={styles.header__container_navMenu} sx={{ display: { xxs: 'none', sm: 'flex' }}} >
                         <NavMenu />

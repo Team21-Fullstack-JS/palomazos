@@ -75,7 +75,7 @@ function ContainerTabs({ children }) {
                 minHeight: 150,
                 height: { xs: 320, sm: 350, md: 380, lg: 420, xl: 450, xxl: 470 },
                 overflow: 'none',
-                overflowY: 'scroll',
+                overflowY: 'auto',
                 marginTop: {lg: '0.3rem'},
             }}
         >
