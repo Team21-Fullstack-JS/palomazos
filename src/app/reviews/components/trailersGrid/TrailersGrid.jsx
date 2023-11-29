@@ -54,12 +54,15 @@ export const TrailersGrid = () => {
 
     return trailers.length > 0 ? (
         <Grid2
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
             container
+            disableEqualOverflow
             spacing={{ xs: 2, md: 3 }}
             sx={{
                 width: 'auto',
                 height: 'auto',
-                // marginTop: '0.1rem'
             }}
         >
             {
@@ -67,8 +70,8 @@ export const TrailersGrid = () => {
                     return (
                         <Grid2
                             xs={12}
-                            sm={6}
-                            md={6}
+                            sm={8}
+                            md={8}
                             key={trailer.id}
                         >
                             <TrailerCard trailer={trailer} />

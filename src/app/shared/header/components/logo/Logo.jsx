@@ -1,5 +1,8 @@
-import { css } from "@emotion/react";
-import logoImage from '/logo.svg';
+import Icon from '../../../utils/others/logo.svg?react';
+import {Box} from "@mui/material";
+import {NavLink} from "react-router-dom";
+import {BASE} from "../../../utils/router/paths.js";
+import {css} from "@emotion/react";
 
 const styles = {
     container: css`
@@ -8,21 +11,20 @@ const styles = {
       display: flex;
       justify-content: center;
       align-items: center;
-      //height: 100%;
-      //border: 1px solid green;
     `,
     logo: css`
-      //height: calc( var(--height-header) - 50px);
+      fill: #fff;
       height: 100%;
+        width: 100%;
     `
 }
 
 export const Logo = () => {
-    return <figure css={ styles.container }>
-        <img
-            css={ styles.logo }
-            src={ logoImage }
-            alt="Logo"
-        />
-    </figure>
+    return (
+        <NavLink to={BASE}>
+            <Box css={styles.container}>
+                <Icon css={styles.logo}/>
+            </Box>
+        </NavLink>
+    )
 }
