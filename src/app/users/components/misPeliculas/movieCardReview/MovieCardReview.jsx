@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
+import {MOVIES} from "../../../../shared/utils/router/paths.js";
+import {NavLink} from "react-router-dom";
+import {useAuthContext} from "../../../../shared/utils/hooks/useAuthContext.js";
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
@@ -18,7 +21,7 @@ export const MovieCardReview = ({ item }) => {
 
     const { id, movie, comment, rate, isCheck } = item;
 
-    const { backdrop_path, overview, poster_path, title, year } = movie;
+    const { backdrop_path, title, year } = movie;
     const { content } = comment;
 
     return (
@@ -37,6 +40,7 @@ export const MovieCardReview = ({ item }) => {
                 height="194"
                 image={ IMG_URL + backdrop_path }
                 alt={ title }
+                // sx={{ cursor: 'pointer' }}
             />
             <CardContent sx={{ height: 50, overflow: 'hidden', overflowY: 'auto'}}>
                 <Typography variant="body2" color="text.secondary">

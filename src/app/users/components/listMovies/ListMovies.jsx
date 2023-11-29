@@ -1,9 +1,10 @@
 import {Box, IconButton, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import {ArrowForward} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import { MOVIES } from "../../../shared/utils/router/paths.js";
 import {Loader} from "../loader/Loader.jsx";
 import {css} from "@emotion/react";
+import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const styles = {
     textSection: css`
@@ -46,6 +47,7 @@ export const ListMovies = ({ title, array, section }) => {
                             {...srcset(item.img, 121, item.rows, item.cols)}
                             alt={item.title}
                             loading="lazy"
+                            // style={{cursor: 'pointer'}}
                         />
                         <ImageListItemBar
                             title={item.title}

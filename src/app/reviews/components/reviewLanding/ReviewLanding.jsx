@@ -2,7 +2,7 @@ import {Box, Container, Tab, Tabs} from "@mui/material";
 import {useState} from "react";
 import {ReviewGrid} from "../reviewGrid/ReviewGrid.jsx";
 import {TrailersGrid} from "../trailersGrid/TrailersGrid.jsx";
-import {css} from "@emotion/react";
+import {Palomazo} from "../palomazo/Palomazo.jsx";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -49,7 +49,7 @@ export const ReviewLanding = () => {
             <Container disableGutters={true}>
                 <TabPanel value={value} index={0}>
                     <ContainerTabs>
-                        Mi review personal
+                        <Palomazo />
                     </ContainerTabs>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
@@ -73,7 +73,7 @@ function ContainerTabs({ children }) {
         <Box
             sx={{
                 minHeight: 150,
-                height: { xs: 320, sm: 350, md: 380, lg: 420, xl: 450, xxl: 470 },
+                height: { xs: 410, sm: 420, md: 430, lg: 440, xl: 450, xxl: 470 },
                 overflow: 'none',
                 overflowY: 'auto',
                 marginTop: {lg: '0.3rem'},

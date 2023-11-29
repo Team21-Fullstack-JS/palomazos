@@ -17,7 +17,6 @@ const styles = {
     `,
     disabled: css`
     pointer-events: none; /* Evita clics en el botón */
-    //opacity: 0.5; /* Puedes ajustar la opacidad según tus preferencias */
   `,
 }
 
