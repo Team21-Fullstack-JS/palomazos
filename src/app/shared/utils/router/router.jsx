@@ -110,7 +110,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        loader: () => redirect(DASHBOARD),
+                        loader: () => redirect(MIS_PELICULAS),
                     },
                     {
                         path: DASHBOARD,

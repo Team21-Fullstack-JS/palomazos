@@ -28,6 +28,7 @@ export function requestApi(path, req, body, token) {
         });
     }
     else if( req === "POST" || req === "PUT" ) {
+        console.log(bodyData);
         return fetch(API + path, {
             mode: "cors",
             method: req,

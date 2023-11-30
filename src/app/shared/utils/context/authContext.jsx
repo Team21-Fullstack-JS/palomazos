@@ -5,6 +5,7 @@
 import { createContext, useState, useCallback, useMemo } from "react";
 import { useLocation } from 'react-router-dom';
 import { BASE, MOVIES, CONTACT } from "../router/paths.js";
+import {GetUser} from "../router/loaders/GetUser.js";
 
 export const AuthContext = createContext(); // --> Tiene el objeto Provider
 
@@ -41,16 +42,32 @@ export function AuthContextProvider( { children }) {
     );
 
     const login = useCallback(function () {
+        const data = async () => await GetUser();
+        data()
+            .then( data => data.json())
+            .then( res => {
+                if( res.error ) {
+                    console.log(res.message);
+                    return;
+                }
+
+                setUserInLocalStorage(res.data);
+            })
+            .catch( err => console.log(err) );
+
         setIsAuthenticated(true);
-    }, []);
+    }, [setUserInLocalStorage]);
 
     const logout = useCallback( function () {
         window.localStorage.removeItem("authPalomazos");
         window.localStorage.removeItem("userPalomazos");
         setIsAuthenticated(false);
+        setCurrentLocation(null);
     }, []);
 
     const [arrayMovies, setArrayMovies] = useState(null);
+
+    const [currentLocation, setCurrentLocation] = useState(null);
 
     const value = useMemo( ()=> (
         {
@@ -68,7 +85,9 @@ export function AuthContextProvider( { children }) {
             arrayMovies,
             setArrayMovies,
             movieFull,
-            setMovieFull
+            setMovieFull,
+            currentLocation,
+            setCurrentLocation
         }
     ), [
         isAuthenticated,
@@ -85,7 +104,9 @@ export function AuthContextProvider( { children }) {
         arrayMovies,
         setArrayMovies,
         movieFull,
-        setMovieFull
+        setMovieFull,
+        currentLocation,
+        setCurrentLocation
     ]);
 
     return (
