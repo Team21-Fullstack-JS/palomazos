@@ -5,11 +5,12 @@
 
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthContext } from '../../utils/hooks/useAuthContext';
-import { USUARIO_ } from '../../utils/router/paths.js';
+import {USUARIO_} from '../../utils/router/paths.js';
 
 export function UserGuestRoutes() {
 
-    const { isAuthenticated } = useAuthContext();
+    const { isAuthenticated, currentLocation } = useAuthContext();
 
-    return isAuthenticated ? <Navigate to={`${USUARIO_}/`}/> : <Outlet />;
+    return currentLocation && isAuthenticated ? <Navigate to={currentLocation}/> :
+        isAuthenticated ? <Navigate to={`${USUARIO_}/`}/> : <Outlet />;
 }

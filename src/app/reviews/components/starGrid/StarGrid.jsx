@@ -2,7 +2,7 @@ import {StarRateRounded} from "@mui/icons-material";
 import {Box, IconButton} from "@mui/material";
 import {grey, orange} from "@mui/material/colors";
 import {css} from "@emotion/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const styles = {
     on: css`
@@ -20,11 +20,20 @@ const styles = {
   `,
 }
 
-export const StarGrid = ({ isDisabled, rate }) => {
+export const StarGrid = ({ isDisabled, rate, setUserRate }) => {
 
     const [selectedStars, setSelectedStars] = useState(rate);
     const [hover, setHover] = useState(0);
     const [isDisabledStarGrid] = useState(isDisabled);
+
+    const handleClick = (star) => {
+        !isDisabled && setSelectedStars(star);
+        setUserRate(star);
+    }
+
+    useEffect(() => {
+        setSelectedStars(rate);
+    }, [rate]);
 
     return (
         <Box >
@@ -38,7 +47,7 @@ export const StarGrid = ({ isDisabled, rate }) => {
                         ]}
                         onMouseEnter={() => setHover(star)}
                         onMouseLeave={() => setHover(selectedStars)}
-                        onClick={() => !isDisabled && setSelectedStars(star)}
+                        onClick={handleClick.bind(null, star)}
                     >
                         <StarRateRounded />
                     </IconButton>
