@@ -62,7 +62,7 @@ export const ReviewGrid = () => {
             sx={{
                 width: 'auto',
                 height: 'auto',
-                marginTop: '0.1rem'
+                marginTop: '0.1rem',
             }}
         >
             {

@@ -9,9 +9,9 @@ import {
     Typography
 } from "@mui/material";
 import { red } from '@mui/material/colors';
-import {ToggleCheckButton} from "../../../shared/components/toggleCheckButton/ToggleCheckButton.jsx";
 import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 import {StarGrid} from "../starGrid/StarGrid.jsx";
+import {ToggleCheckLogo} from "../../../shared/components/toggleCheckButton/ToggleCheckLogo.jsx";
 
 export const ReviewCard = ({ review }) => {
     const [message] = useState("No hay comentarios para esta review");
@@ -25,9 +25,6 @@ export const ReviewCard = ({ review }) => {
     const { getUserInLocalStorage } = useAuthContext();
 
     const userInLocalStorage = getUserInLocalStorage();
-
-    const userInLocalStorageParse = userInLocalStorage ? JSON.parse(userInLocalStorage) : false;
-    const isUserReview = userInLocalStorageParse && userInLocalStorageParse.id === userId;
 
     return (
         <Box className={'element__slideInFromRight'}>
@@ -52,11 +49,15 @@ export const ReviewCard = ({ review }) => {
                         isDisabled={true}
                         rate={rate}
                     />
-                    <ToggleCheckButton
-                        isCheck={isCheck}
-                        idReview={reviewId}
-                        isDisabled={!isUserReview}
-                    />
+                    <Box
+                        sx={{
+                            width: '45px',
+                            height: '100%',
+                            borderRadius: '50%',
+                        }}
+                    >
+                        <ToggleCheckLogo userCheck={isCheck} handleClick={null} isDisabled={true} />
+                    </Box>
                 </CardActions>
             </Card>
         </Box>
