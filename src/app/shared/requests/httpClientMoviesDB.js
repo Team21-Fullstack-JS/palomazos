@@ -43,5 +43,22 @@ export function getTrailers(path, lang) {
         .catch(error => console.log(error));
 }
 
+export function getMovieByIDFromMovieDB(path, id, lang) {
+    const URL = `${API_MOVIES_DB}${path}/${id}?language=${lang}`;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_API_MOVIES_DB_TOKEN}`
+        }
+    };
+
+    return fetch(URL, options)
+        .then(response => response.json())
+        .then(data => data )
+        .catch(error => console.log(error));
+}
+
 export const IMG_URL_ORIGINAL = 'https://image.tmdb.org/t/p/original';
 export const IMG_URL = 'https://image.tmdb.org/t/p/w500';

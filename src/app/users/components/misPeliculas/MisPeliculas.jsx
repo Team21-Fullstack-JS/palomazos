@@ -51,6 +51,7 @@ export const MisPeliculas = () => {
 
             for (let i = 0; i < 6; i++) {
                 const newMovie = {};
+                newMovie.id = req.results[i].id;
                 newMovie.img = IMG_URL + req.results[i].backdrop_path;
                 newMovie.title = req.results[i].title;
                 newMovie.year = new Date(req.results[i].release_date).getFullYear();
