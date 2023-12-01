@@ -4,7 +4,6 @@ import {Link, NavLink} from "react-router-dom";
 import { MOVIES } from "../../../shared/utils/router/paths.js";
 import {Loader} from "../loader/Loader.jsx";
 import {css} from "@emotion/react";
-import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const styles = {
     textSection: css`
@@ -14,7 +13,6 @@ const styles = {
         font-size: .9rem;
     `
 }
-
 
 export const ListMovies = ({ title, array, section }) => {
 
@@ -42,18 +40,23 @@ export const ListMovies = ({ title, array, section }) => {
                 rowHeight={121}
             >
                 {array.map((item) => (
-                    <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
-                        <img
-                            {...srcset(item.img, 121, item.rows, item.cols)}
-                            alt={item.title}
-                            loading="lazy"
-                            // style={{cursor: 'pointer'}}
-                        />
-                        <ImageListItemBar
-                            title={item.title}
-                            subtitle={item.year}
-                        />
-                    </ImageListItem>
+                    <NavLink to={`${MOVIES}/id/${item.id}`} key={item.id} style={{textDecoration: 'none'}}>
+                        <ImageListItem
+                            cols={item.cols || 1}
+                            rows={item.rows || 1}
+                        >
+                            <img
+                                {...srcset(item.img, 121, item.rows, item.cols)}
+                                alt={item.title}
+                                loading="lazy"
+                                style={{cursor: 'pointer'}}
+                            />
+                            <ImageListItemBar
+                                title={item.title}
+                                subtitle={item.year}
+                            />
+                        </ImageListItem>
+                    </NavLink>
                 ))}
             </ImageList>
         </Box>

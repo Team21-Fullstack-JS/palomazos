@@ -34,7 +34,7 @@ export const ReviewGrid = () => {
                     const reviewsArray = data.filter( (movie) => movie.id === id);
 
                     if (reviewsArray.length <= 0) {
-                        setNotReviewMsg("No existen reviews para esta película");
+                        setNotReviewMsg("No existen críticas para esta película");
                     } else {
                         setReviews(reviewsArray[0].reviews);
                     }
