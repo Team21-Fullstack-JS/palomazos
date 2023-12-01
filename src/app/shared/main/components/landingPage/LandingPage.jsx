@@ -6,63 +6,74 @@ import {SIGNUP, USUARIOS} from "../../../utils/router/paths.js";
 
 export const LandingPage = () => {
 
-    const handleClick = () => alert("clicked");
-
     return (
-      <div
-      style={{
-        backgroundImage: `url('../../../../../../../palomazos/assets/fondoo-collage.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
+      <Box
+          sx={{
+              backgroundImage: `url('../../../../../../../palomazos/assets/fondoo-collage.jpg')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              width: '100%',
+              height: 'calc(100vh - 80px)',
+          }}
     >
-        <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '1.5rem',
-            paddingTop: '6rem',
-            color: 'white'
-        }}>
+        <Box
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '1.5rem',
+                color: 'white',
+            }}
+        >
             <Typography
-            variant="h5"
+            variant="h4"
+            textAlign="center"
+            sx={{
+                fontSize: {xs: '1.5rem', sm: '2.3rem', md: '2.5rem'},
+                fontWeight: 'bold',
+            }}
             > 
-              ¡BIENVENIDOS A PALOMAZOS!
+              Comenta tus películas favoritas
             </Typography>
         </Box>
-        <Box sx={{
-            display: 'flex',
-            textAlign: 'center',
-            fontSize: '1rem',
-
-            padding: '4rem 6rem',
-            color: 'white'
-        }}>
-            <Typography>
-              Palomazos es un sitio donde los usuarios podrán compartir sus reseñas, comentar opiniones y compartir su gusto por las películas tanto clásicas como actuales. Permitiendo generar una comunidad cinéfila que permita a todos descubrir nuevas obras del septimo arte.
+        <Box
+            maxWidth="90%"
+            sx={{
+                display: 'flex',
+                textAlign: 'center',
+                color: 'white'
+            }}
+        >
+            <Typography
+                sx={{
+                    fontSize: {xs: '1rem', sm: '1.2rem', md: '1.5rem'},
+                }}
+            >
+              ¿Eres una persona amante del séptimo arte? Palomazos es el lugar donde podrás realizar tus reseñas y compartir tu gusto por las películas.
             </Typography>
         </Box>
         <Box sx={{
             display: 'flex',
             justifyContent: 'center',
-            paddingBottom: '2rem'
         }}>
             <NavLink to={USUARIOS + '/' + SIGNUP}>
-                {/*<p style={{ color: "white"}}>Signup</p>*/}
                 <Button
-                    // onClick={handleClick}
                     variant="contained"
                     color="primary"
+                    sx={{
+                        fontSize: {xs: '.8rem', sm: '1rem', md: '1.2rem'},
+                    }}
                 >
                     Comenzar
                 </Button>
             </NavLink>
 
         </Box>
-      </div>
+      </Box>
     )    
 }
 

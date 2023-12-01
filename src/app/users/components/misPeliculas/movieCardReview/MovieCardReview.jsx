@@ -1,7 +1,5 @@
-import {ToggleCheckButton} from "../../../../shared/components/toggleCheckButton/ToggleCheckButton.jsx";
-
 import {
-    Avatar,
+    Avatar, Box,
     Card,
     CardActions,
     CardContent,
@@ -11,9 +9,8 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
-import {MOVIES} from "../../../../shared/utils/router/paths.js";
-import {NavLink} from "react-router-dom";
-import {useAuthContext} from "../../../../shared/utils/hooks/useAuthContext.js";
+import {ToggleCheckLogo} from "../../../../shared/components/toggleCheckButton/ToggleCheckLogo.jsx";
+import {StarGrid} from "../../../../reviews/components/starGrid/StarGrid.jsx";
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
@@ -42,13 +39,38 @@ export const MovieCardReview = ({ item }) => {
                 alt={ title }
                 // sx={{ cursor: 'pointer' }}
             />
-            <CardContent sx={{ height: 50, overflow: 'hidden', overflowY: 'auto'}}>
+            <CardContent sx={{ height: 80, overflow: 'hidden', overflowY: 'auto'}}>
                 <Typography variant="body2" color="text.secondary">
                     { content }
                 </Typography>
             </CardContent>
-            <CardActions disableSpacing>
-                <ToggleCheckButton isCheck={isCheck} idReview={id} isDisabled={false} />
+            <CardActions
+                disableSpacing
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <Box
+                    sx={{
+                        height: '100%',
+                    }}
+                >
+                    <StarGrid
+                        isDisabled={true}
+                        rate={rate}
+                        setUserRate={null}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        width: '50px',
+                        height: '100%',
+                        borderRadius: '50%',
+                    }}
+                >
+                    <ToggleCheckLogo userCheck={isCheck} handleClick={null} isDisabled={true} />
+                </Box>
             </CardActions>
         </Card>
     )
