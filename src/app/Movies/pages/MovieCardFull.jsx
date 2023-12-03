@@ -6,8 +6,8 @@ import {Box, Typography} from "@mui/material";
 import {ReviewLanding} from "../../reviews/components/reviewLanding/ReviewLanding.jsx";
 import {useCallback, useEffect, useState} from "react";
 import {Loader} from "../../users/components/loader/Loader.jsx";
-import {GetMoviesWithReviews} from "../../shared/utils/router/loaders/GetMoviesWithReviews.js";
-import {getMovieByIDFromMovieDB, getMovies} from "../../shared/requests/httpClientMoviesDB.js";
+import {getMovieByIDFromMovieDB} from "../../shared/requests/httpClientMoviesDB.js";
+import {SimilarMovies} from "../components/similarMovies/SimilarMovies.jsx";
 
 const styles = {
     container: css`
@@ -38,8 +38,9 @@ export const MovieCardFull = () => {
 
     useEffect(() => {
 
-        if(!movieFull) {
-            const movieId = params ? params.movieId : null;
+        const movieId = params ? Number(params.movieId) : null;
+
+        if(!movieFull || (movieFull && movieFull.id !== movieId)) {
 
             if (movieId) {
                 fetchMoviesWithReviews(movieId)
@@ -80,6 +81,9 @@ export const MovieCardFull = () => {
             <MovieData movie={movieFull}/>
             <Box>
                 <ReviewLanding />
+            </Box>
+            <Box>
+                <SimilarMovies movieId={movieFull.id} />
             </Box>
         </Box>
     ) : (

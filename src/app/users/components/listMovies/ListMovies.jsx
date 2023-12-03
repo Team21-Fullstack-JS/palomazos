@@ -1,6 +1,6 @@
 import {Box, IconButton, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import {ArrowForward} from "@mui/icons-material";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { MOVIES } from "../../../shared/utils/router/paths.js";
 import {Loader} from "../loader/Loader.jsx";
 import {css} from "@emotion/react";
@@ -26,12 +26,14 @@ export const ListMovies = ({ title, array, section }) => {
             }}
             >
                 <p css={styles.textSection}>{ title }</p>
-                <Link to={`${section}`}>
-                    <IconButton color={"primary"} size={"small"}>
-                        <p css={styles.linkText}> Ver más </p>
-                        <ArrowForward sx={{fontSize: {xs: 'medium'}}} />
-                    </IconButton>
-                </Link>
+                { section &&
+                    <Link to={`${section}`}>
+                        <IconButton color={"primary"} size={"small"}>
+                            <p css={styles.linkText}> Ver más </p>
+                            <ArrowForward sx={{fontSize: {xs: 'medium'}}}/>
+                        </IconButton>
+                    </Link>
+                }
             </Box>
             <ImageList
                 sx={{ width: 'auto', height: 'auto' }}
@@ -40,23 +42,37 @@ export const ListMovies = ({ title, array, section }) => {
                 rowHeight={121}
             >
                 {array.map((item) => (
-                    <NavLink to={`${MOVIES}/id/${item.id}`} key={item.id} style={{textDecoration: 'none'}}>
-                        <ImageListItem
-                            cols={item.cols || 1}
-                            rows={item.rows || 1}
+                    <ImageListItem
+                        key={item.id}
+                        cols={item.cols || 1}
+                        rows={item.rows || 1}
+                    >
+                        <Link to={`${MOVIES}/id/${item.id}`} style={{textDecoration: 'none'}}>
+                        <Box
+
+                            style={{cursor: 'pointer'}}
+                            sx={{
+                                backgroundImage: `url(${item.img})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                width: '100%',
+                                height: '100%',
+                                cursor: 'pointer',
+                                }}
                         >
-                            <img
-                                {...srcset(item.img, 121, item.rows, item.cols)}
+                            {/*<img
+                                // src={item.img}
                                 alt={item.title}
                                 loading="lazy"
                                 style={{cursor: 'pointer'}}
-                            />
-                            <ImageListItemBar
-                                title={item.title}
-                                subtitle={item.year}
-                            />
-                        </ImageListItem>
-                    </NavLink>
+                            />*/}
+                        </Box>
+                        <ImageListItemBar
+                            title={item.title}
+                            subtitle={item.year}
+                        />
+                        </Link>
+                    </ImageListItem>
                 ))}
             </ImageList>
         </Box>
