@@ -74,7 +74,7 @@ function ContainerTabs({ children }) {
             sx={{
                 minHeight: 280,
                 height: 'auto', //{ xs: 'auto', sm: 'auto', md: 435, lg: 450, xl: 450, xxl: 450 },
-                overflow: 'hidden',
+                overflowX: 'hidden',
                 overflowY: 'auto',
                 marginTop: {lg: '0.3rem'},
                 padding: '.3rem'

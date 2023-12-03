@@ -8,7 +8,8 @@ import {BannerUsers} from "../banner/BannerUsers.jsx";
 import {ListMovies} from "../listMovies/ListMovies.jsx";
 import {Loader} from "../loader/Loader.jsx";
 import {getMovies} from "../../../shared/requests/httpClientMoviesDB.js";
-import bgImage from '/assets/movie-director.jpg'
+import bgImage from '/assets/movie-director.jpg';
+import imgNotFound from '/assets/oops.jpg';
 
 import {css} from "@emotion/react";
 
@@ -52,7 +53,7 @@ export const MisPeliculas = () => {
             for (let i = 0; i < 6; i++) {
                 const newMovie = {};
                 newMovie.id = req.results[i].id;
-                newMovie.img = IMG_URL + req.results[i].backdrop_path;
+                newMovie.img = req.results[i].backdrop_path ? IMG_URL + req.results[i].backdrop_path : imgNotFound;
                 newMovie.title = req.results[i].title;
                 newMovie.year = new Date(req.results[i].release_date).getFullYear();
 

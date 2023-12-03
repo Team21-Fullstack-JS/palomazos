@@ -1,5 +1,6 @@
 import {Box, Divider, Typography} from "@mui/material";
 import {css} from "@emotion/react";
+import imgNotFound from '/assets/movie-theater.jpg';
 
 const IMG_URL_W500 = 'https://image.tmdb.org/t/p/w500';
 const IMG_URL_MULTIFACES = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/';
@@ -34,7 +35,7 @@ export const MovieData = ({ movie } ) => {
                     xl: 550, //large screens 1536
                     // xxl: 560 //large desktop 1600
                 },
-                backgroundImage: `url(${IMG_URL_MULTIFACES+backdrop_path})`,
+                backgroundImage: backdrop_path ? `url(${IMG_URL_MULTIFACES+backdrop_path})` : `url(${imgNotFound})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -53,7 +54,7 @@ export const MovieData = ({ movie } ) => {
                     sx={{
                         width: {lg: '70%'},
                         height: {lg: '90%'},
-                        backgroundImage: `url(${IMG_URL_W500+poster_path})`,
+                        backgroundImage: poster_path ? `url(${IMG_URL_W500+poster_path})` : `url(${imgNotFound})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -111,7 +112,7 @@ export const MovieData = ({ movie } ) => {
                     variant="caption"
                     sx={{ fontSize: {xs: ".7rem", sm: '1rem', md: '1.1rem'} }}
                 >
-                    {overview}
+                    {overview ? overview : 'Sin descripción'}
                 </Typography>
             </Box>
         </Box>

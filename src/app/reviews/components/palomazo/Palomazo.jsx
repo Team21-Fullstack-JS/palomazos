@@ -20,6 +20,7 @@ import {linkOption} from "../../../shared/utils/router/paths.js";
 import {CreateMoviesReviews} from "../../../shared/utils/router/loaders/createMoviesReviews.js";
 import {GetMovieById} from "../../../shared/utils/router/loaders/GetMovieById.js";
 import {CreateNewMovie} from "../../../shared/utils/router/loaders/CreateNewMovie.js";
+import imgNotFound from '/assets/movie-theater.jpg';
 
 const styles = {
     hideBox: css`
@@ -228,7 +229,7 @@ function MainContainer( props ) {
                 />
                 <CardMedia
                     component="img"
-                    image={`${IMG_URL_W500}${movieFull.backdrop_path}`}
+                    image={movieFull.backdrop_path ? `${IMG_URL_W500}${movieFull.backdrop_path}` : imgNotFound }
                     alt={movieFull.title}
                     sx={{ height: {xs: 100} }}
                 />
