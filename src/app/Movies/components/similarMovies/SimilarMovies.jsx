@@ -6,6 +6,8 @@ import {Loader} from "../../../users/components/loader/Loader.jsx";
 import {ListMovies} from "../../../users/components/listMovies/ListMovies.jsx";
 import imgNotFound from '/assets/movie-theater.jpg';
 import {getRandomNumber} from "../../../shared/utils/others/getRandomNumber.js";
+import {shuffleArray} from "../../../shared/utils/others/shuffledArrays.js";
+import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const styles = {
     container: css`
@@ -22,25 +24,29 @@ const styles = {
     `
 };
 
-export const SimilarMovies = ({ movie }) => {
+export const SimilarMovies = () => {
+
+    const { movieFull } = useAuthContext();
 
     const [arrayMovies, setArrayMovies] = useState(null);
 
     const fetchMovies = useCallback( async () => {
 
-        const url = `/movie/${movie.id}/similar`;
+        // const url = `/movie/${movie.id}/similar`;
+        const url = `/trending/movie/${'week'}`;
 
-        const res = await getMovies(url, 'es-US', getRandomNumber(1, 6));
-        // console.log(res);
+        const data = await getMovies(url, 'es-US', 1); //getRandomNumber(1, 6)
+        // const res = data.results.sort(() => 0.5 - Math.random());
+        const res = shuffleArray(data.results);
 
         const movies = [];
 
         for (let i = 0; i < 6; i++) {
             const newMovie = {};
-            newMovie.id = res.results[i].id;
-            newMovie.img = res.results[i].backdrop_path ? IMG_URL + res.results[i].backdrop_path : imgNotFound;
-            newMovie.title = res.results[i].title;
-            newMovie.year = new Date(res.results[i].release_date).getFullYear();
+            newMovie.id = res[i].id;
+            newMovie.img = res[i].backdrop_path ? IMG_URL + res[i].backdrop_path : imgNotFound;
+            newMovie.title = res[i].title;
+            newMovie.year = new Date(res[i].release_date).getFullYear();
 
             if (i === 0) {
                 newMovie.rows = 2;
@@ -56,19 +62,19 @@ export const SimilarMovies = ({ movie }) => {
 
         setArrayMovies(movies);
 
-    }, [movie.id]);
+    }, []);
 
     useEffect(() => {
         if (!arrayMovies) {
             fetchMovies();
         }
-    }, [arrayMovies, fetchMovies]);
+    }, [arrayMovies, fetchMovies, movieFull.id]);
 
     if (arrayMovies && arrayMovies.length <= 0) {
         return (
             <Box css={styles.container}>
                 <Typography variant="h5" component="h2" color="var(--bgcolor-header)" css={styles.containerMessage}>
-                    No existen películas similares.
+                    No existen películas.
                 </Typography>
             </Box>
         )
@@ -76,7 +82,7 @@ export const SimilarMovies = ({ movie }) => {
 
     return !arrayMovies ? (
         <div css={styles.containerLoader}>
-            <Loader message={"Cargando películas similares..."} />
+            <Loader message={"Cargando películas..."} />
         </div>
     ) : (
         <Container
@@ -96,7 +102,7 @@ export const SimilarMovies = ({ movie }) => {
                     width: '90%',
                 }}
             >
-                <ListMovies title={"Películas similares"} array={arrayMovies} section={null} />
+                <ListMovies title={"Tendencia de la semana"} array={arrayMovies} section={null} />
             </Box>
         </Container>
     )

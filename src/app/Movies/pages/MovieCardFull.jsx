@@ -46,10 +46,11 @@ export const MovieCardFull = () => {
             if (movieId) {
                 fetchMoviesWithReviews(movieId)
                     .then( (res) => {
+
                         if (res) {
                             setMovieFull(res);
                             setIsMovie(true);
-                        } else {
+                        } if (res && res.status_code && res.status_code === 34) {
                             setIsMovie(false);
                         }
                     })
@@ -87,7 +88,7 @@ export const MovieCardFull = () => {
                 <ReviewLanding />
             </Box>
             <Box>
-                <SimilarMovies movie={movieFull} />
+                <SimilarMovies />
             </Box>
             <Box>
                 <ProductsGrid />

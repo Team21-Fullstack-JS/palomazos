@@ -138,7 +138,7 @@ export const Palomazo = () => {
         if( isAuthenticated && !reviewArray ) {
             fetGetUserReviews();
         }
-    }, [isAuthenticated, fetGetUserReviews, reviewArray]);
+    }, [isAuthenticated, fetGetUserReviews, reviewArray, movieFull.id]);
 
     return (reviewArray && reviewArray.length >= 0) ? (
         <MainContainer
