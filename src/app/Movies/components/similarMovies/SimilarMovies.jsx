@@ -22,15 +22,16 @@ const styles = {
     `
 };
 
-export const SimilarMovies = ({ movieId }) => {
+export const SimilarMovies = ({ movie }) => {
 
     const [arrayMovies, setArrayMovies] = useState(null);
 
     const fetchMovies = useCallback( async () => {
 
-        const url = `/movie/${movieId}/similar`;
+        const url = `/movie/${movie.id}/similar`;
 
         const res = await getMovies(url, 'es-US', getRandomNumber(1, 6));
+        // console.log(res);
 
         const movies = [];
 
@@ -55,7 +56,7 @@ export const SimilarMovies = ({ movieId }) => {
 
         setArrayMovies(movies);
 
-    }, [movieId]);
+    }, [movie.id]);
 
     useEffect(() => {
         if (!arrayMovies) {
@@ -91,7 +92,8 @@ export const SimilarMovies = ({ movieId }) => {
             <Box
                 maxWidth="lg"
                 sx={{
-                    width: { xs: 'auto', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                    // width: { xs: '350px', sm: '600px', md: '900px', lg: '1024px', xl: '1536px', xxl: '1600px' },
+                    width: '90%',
                 }}
             >
                 <ListMovies title={"Películas similares"} array={arrayMovies} section={null} />
