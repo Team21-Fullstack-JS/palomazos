@@ -8,6 +8,7 @@ import {useCallback, useEffect, useState} from "react";
 import {Loader} from "../../users/components/loader/Loader.jsx";
 import {getMovieByIDFromMovieDB} from "../../shared/requests/httpClientMoviesDB.js";
 import {SimilarMovies} from "../components/similarMovies/SimilarMovies.jsx";
+import {ProductsGrid} from "../../products/components/productsGrid/ProductsGrid.jsx";
 
 const styles = {
     container: css`
@@ -80,10 +81,16 @@ export const MovieCardFull = () => {
         <Box id="top"  css={styles.container}>
             <MovieData movie={movieFull}/>
             <Box>
+                <ProductsGrid />
+            </Box>
+            <Box>
                 <ReviewLanding />
             </Box>
             <Box>
-                <SimilarMovies movieId={movieFull.id} />
+                <SimilarMovies movie={movieFull} />
+            </Box>
+            <Box>
+                <ProductsGrid />
             </Box>
         </Box>
     ) : (

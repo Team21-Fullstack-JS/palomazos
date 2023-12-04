@@ -20,6 +20,7 @@ import {
     MOVIES_TOP_RATED,
     MOVIES_UPCOMING
 } from "../../../shared/utils/router/paths.js";
+import {ProductsGrid} from "../../../products/components/productsGrid/ProductsGrid.jsx";
 const UPCOMING = '/movie/upcoming';
 const TOP_RATED = '/movie/top_rated';
 const NOW_PLAYING = '/movie/now_playing';
@@ -116,6 +117,9 @@ export const MisPeliculas = () => {
                         Mis Peliculas
                     </Box>
                     <GridV2Mui array={data.data.reviews} />
+                    <Box>
+                        <ProductsGrid />
+                    </Box>
                     <Box
                         sx={{
                             width: '100%',
@@ -137,6 +141,9 @@ export const MisPeliculas = () => {
                         <div css={styles.containerSectionMovies}>
                             <ListMovies title={'Próximos estrenos'} section={MOVIES_UPCOMING} array={arrayMovies[3]} />
                         </div>
+                    </Box>
+                    <Box>
+                        <ProductsGrid />
                     </Box>
                 </Box>
             </Container>
