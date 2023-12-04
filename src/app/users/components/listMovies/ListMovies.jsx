@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import { MOVIES } from "../../../shared/utils/router/paths.js";
 import {Loader} from "../loader/Loader.jsx";
 import {css} from "@emotion/react";
+import {useAuthContext} from "../../../shared/utils/hooks/useAuthContext.js";
 
 const styles = {
     textSection: css`
@@ -15,6 +16,12 @@ const styles = {
 }
 
 export const ListMovies = ({ title, array, section }) => {
+
+    const { setMovieFull } = useAuthContext();
+
+    const handleClick = () => {
+        setMovieFull(null);
+    }
 
     return array ? (
         <Box className={'element__slideInFromRight'} >
@@ -47,7 +54,7 @@ export const ListMovies = ({ title, array, section }) => {
                         cols={item.cols || 1}
                         rows={item.rows || 1}
                     >
-                        <Link to={`${MOVIES}/id/${item.id}`} style={{textDecoration: 'none'}}>
+                        <Link to={`${MOVIES}/id/${item.id}`} style={{textDecoration: 'none'}} onClick={handleClick}>
                         <Box
 
                             style={{cursor: 'pointer'}}
