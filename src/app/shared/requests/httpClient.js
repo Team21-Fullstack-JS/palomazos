@@ -9,7 +9,7 @@
  * */
 export function requestApi(path, req, body, token) {
 
-    const API = "https://palomazos-api-a0bcbaa57f47.herokuapp.com/api/v1"; //Base de la API a consumir
+    const API = "http://40.233.31.197/palomazos-api/v1"; //Base de la API a consumir
     // const API = "http://localhost:4005/v1";
 
     const bodyData = (req === "POST" || req === "PUT") ? body : {};
